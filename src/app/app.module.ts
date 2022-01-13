@@ -9,19 +9,21 @@ import { TeacherRoutingModule } from './teacher/teacher-routing.module';
 import { TeacherModule } from './teacher/teacher.module';
 import { UsersRoutingModule } from './users/users-routing.module';
 import { UsersModule } from './users/users.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     UsersModule,
     TeacherModule,
-    StudentModule
+    StudentModule,
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
