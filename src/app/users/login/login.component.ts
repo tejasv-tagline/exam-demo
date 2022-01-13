@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   public onLogin(): void {
-    console.log('myLoginForm.value :>> ', this.myLoginForm.value);
     this.apiService.getUserData(this.myLoginForm.value).subscribe({
       next: (res) => {
         if(res.data.role=='student'){
