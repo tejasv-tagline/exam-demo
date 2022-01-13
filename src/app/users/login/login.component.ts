@@ -34,10 +34,10 @@ export class LoginComponent implements OnInit {
       next: (res) => {
         if(res.data.role=='student'){
           this.toaster.success(res.message);
-          this.router.navigate(['student']);
+          this.router.navigate(['signup']);
         }
         else{
-          this.router.navigate(['teacher'])
+          this.router.navigate(['login'])
         }
       },
       error: (err) => {
