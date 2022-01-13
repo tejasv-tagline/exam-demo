@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -12,10 +14,15 @@ export class LoginComponent implements OnInit {
   public isErrorMessage: boolean = false;
   public isLoginDone: boolean = false;
 
-  constructor(private fb: FormBuilder, private apiService: ApiService) {
+  constructor(
+    private fb: FormBuilder,
+    private apiService: ApiService,
+    private toaster: ToastrService,
+    private router: Router
+  ) {
     this.myLoginForm = this.fb.group({
-      email: ['',[Validators.required,Validators.email]],
-      password: ['',[Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
     });
   }
 
@@ -25,14 +32,16 @@ export class LoginComponent implements OnInit {
     console.log('myLoginForm.value :>> ', this.myLoginForm.value);
     this.apiService.getUserData(this.myLoginForm.value).subscribe({
       next: (res) => {
-        // console.log('res :>> ', res.message);.
-        this.isLoginDone = true;
-        this.isLoginDone = res.message;
-        // alert('Login Successfull');
+        if(res.data.role=='student'){
+          this.toaster.success(res.message);
+          this.router.navigate(['student']);
+        }
+        else{
+          this.router.navigate(['teacher'])
+        }
       },
       error: (err) => {
-        this.isErrorMessage = true;
-        this.isErrorMessage = err.error.message;
+        this.toaster.error(err.error.message);
       },
     });
   }
