@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-student-data-list',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentDataListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiservice:ApiService) {
+    const token = localStorage.getItem('token');
+    console.log('token :>> ', token);
+   }
 
   ngOnInit(): void {
+
   }
 
+  getStudentData(){
+    // this.apiservice.getStudentsData(this.localstorage.getItem('token'));
+  }
 }

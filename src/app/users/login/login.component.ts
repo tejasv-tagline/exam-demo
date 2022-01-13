@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {
     this.myLoginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      email: ['tejasvteacher.tagline@gmail.com', [Validators.required, Validators.email]],
+      password: ['Tejash@123', [Validators.required]],
     });
   }
 
@@ -31,12 +31,12 @@ export class LoginComponent implements OnInit {
   public onLogin(): void {
     this.apiService.getUserData(this.myLoginForm.value).subscribe({
       next: (res) => {
-        if(res.data.role=='student'){
+        localStorage.setItem('token', res.data.token);
+        if (res.data.role == 'student') {
           this.toaster.success(res.message);
           this.router.navigate(['student']);
-        }
-        else{
-          this.router.navigate(['teacher'])
+        } else {
+          this.router.navigate(['teacher']);
         }
       },
       error: (err) => {

@@ -14,5 +14,7 @@ export class ApiService {
   getUserData(myForm:any):Observable<any>{
     return this.http.post('https://nodejsexamination.herokuapp.com/users/Login',myForm)
   }
-
+  getStudentsData(token:any){
+    return this.http.get('https://nodejsexamination.herokuapp.com/dashboard/Teachers',token);
+  }
 }
