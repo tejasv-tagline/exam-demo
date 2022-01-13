@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -14,20 +14,20 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private apiService: ApiService) {
     this.myLoginForm = this.fb.group({
-      email: '',
-      password: '',
+      email: ['',[Validators.required,Validators.email]],
+      password: ['',[Validators.required]],
     });
   }
 
   ngOnInit(): void {}
 
-  onLogin() {
+  public onLogin(): void {
     console.log('myLoginForm.value :>> ', this.myLoginForm.value);
     this.apiService.getUserData(this.myLoginForm.value).subscribe({
       next: (res) => {
         // console.log('res :>> ', res.message);.
-        this.isLoginDone=true;
-        this.isLoginDone=res.message
+        this.isLoginDone = true;
+        this.isLoginDone = res.message;
         // alert('Login Successfull');
       },
       error: (err) => {
@@ -35,5 +35,8 @@ export class LoginComponent implements OnInit {
         this.isErrorMessage = err.error.message;
       },
     });
+  }
+  get fControl() {
+    return this.myLoginForm.controls;
   }
 }

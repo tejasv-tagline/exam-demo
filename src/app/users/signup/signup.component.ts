@@ -4,7 +4,9 @@ import {
   FormGroup,
   NgForm,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -14,13 +16,19 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class SignupComponent implements OnInit {
   public myForm!: FormGroup;
+  public isSignedUp: boolean = false;
+  public isSignedUpFailed: boolean = false;
   public roles = ['Student', 'Teacher', 'User'];
-  constructor(private fb: FormBuilder, private apiService: ApiService) {
+  constructor(
+    private fb: FormBuilder,
+    private apiService: ApiService,
+    private router: Router
+  ) {
     this.myForm = this.fb.group({
-      name: '',
-      email: '',
-      password: '',
-      role: '',
+      name: ['',Validators.required],
+      email: ['',[Validators.required,Validators.email]],
+      password: ['',[Validators.required,Validators.minLength(6)]],
+      role: ['',Validators.required],
     });
   }
 
@@ -34,7 +42,9 @@ export class SignupComponent implements OnInit {
     //   },
     // });
   }
-
+  get fControl(){
+    return this.myForm.controls;
+  }
   public onSubmit(): void {
     // console.log('this.myForm :>> ', this.myForm.value);
     // console.log('this.myForm.value.name :>> ', this.myForm.value.name);
@@ -46,10 +56,15 @@ export class SignupComponent implements OnInit {
     // };
 
     this.apiService.setUsername(this.myForm.value).subscribe({
-      next: (res) => { console.log('post res :>> ', res); 
-    // if(res.server)
-  }
-    })
-    
+      next: (res) => {
+        console.log('post res :>> ', res);
+        this.router.navigate(['login']);
+        // if(res.server)
+      },
+      error: (err) => {
+        this.isSignedUpFailed = true;
+        this.isSignedUpFailed = err.message;
+      },
+    });
   }
 }
