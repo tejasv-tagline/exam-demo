@@ -30,7 +30,8 @@ export class StudentDataListComponent implements OnInit {
           this.toaster.success('', res.message);
         },
         error: (err) => {
-          console.log('err.message :>> ', err.message);
+          // console.log('err.message :>> ', err.message);
+          this.toaster.error(err.message);
         },
       });
     }, 800);

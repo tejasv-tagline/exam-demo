@@ -33,6 +33,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  public navigateRegister(){
+    this.router.navigate(['/signup'])
+  }
   public onLogin(): void {
     this.apiService.getUserData(this.myLoginForm.value).subscribe({
       next: (res) => {

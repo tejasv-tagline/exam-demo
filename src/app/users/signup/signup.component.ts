@@ -42,6 +42,9 @@ export class SignupComponent implements OnInit {
     //   },
     // });
   }
+  public navigateLogin(){
+    this.router.navigate(['/login'])
+  }
   get fControl(){
     return this.myForm.controls;
   }

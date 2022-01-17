@@ -40,10 +40,10 @@
 
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary mt-3" [disabled]="!myForm.valid" >Submit</button>
+            <button type="submit" class="btn btn-primary mt-3" [disabled]="!myForm.valid">Submit</button>
+            <button type="submit" class="btn btn-primary mt-3 ms-2" (click)="navigateLogin()">Login</button>
             <p *ngIf="isSignedUpFailed" class="text-danger">Signup Failed Please Try again</p>
         </form>
     </div>
     <div class="col-sm-3"></div>
-    <!-- <pre>{{myForm}}</pre> -->
 </div>
