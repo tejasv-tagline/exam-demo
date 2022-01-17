@@ -36,13 +36,15 @@ export class LoginComponent implements OnInit {
   public onLogin(): void {
     this.apiService.getUserData(this.myLoginForm.value).subscribe({
       next: (res) => {
-        // this.token = localStorage.setItem('token', res.data.token);
-        if (res.data.role == 'student') {
-          this.toaster.success(res.message);
-          this.router.navigate(['student']);
-        } else {
-          this.router.navigate(['teacher']);
-          this.toaster.success(res.message);
+        if (res) {
+          this.token = localStorage.setItem('Token', res.data.token);
+          if (res?.data.role == 'student') {
+            this.toaster.success(res.message);
+            this.router.navigate(['student']);
+          } else {
+            this.router.navigate(['teacher']);
+            this.toaster.success(res.message);
+          }
         }
       },
       error: (err) => {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { showAllData } from 'src/app/interface/common';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -8,25 +9,30 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./student-data-list.component.scss'],
 })
 export class StudentDataListComponent implements OnInit {
-  public passMessage!:string;
-  constructor(private apiservice: ApiService,private toaster:ToastrService) {
-    const token = localStorage.getItem('token');
+  public isShowedData: boolean = false;
+  public passMessage!: string;
+  public ShowData: any;
+  public allData: showAllData[] = [];
+  token = localStorage.getItem('Token');
+  constructor(private apiservice: ApiService, private toaster: ToastrService) {
     // console.log('token :>> ', token);
   }
 
   ngOnInit(): void {
-    this.apiservice.getStudentsData().subscribe({
-      next: (res:any) => {
-        // this.toaster.success(res);
-
-        console.log('res :>> ', res);
-        this.passMessage=res.message;
-        this.toaster.success("", res.message);
-        // console.log('res :>> ', res);
-      },
-      error: (err) => {
-        console.log('err.message :>> ', err.message);
-      },
-    });
+    console.log('token :>> ', this.token);
+    setTimeout(() => {
+      this.apiservice.getStudentsData().subscribe({
+        next: (res: any) => {
+          this.isShowedData = true;
+          this.allData = res.data;
+          this.passMessage = res.message;
+          console.log('res :>> ', res);
+          this.toaster.success('', res.message);
+        },
+        error: (err) => {
+          console.log('err.message :>> ', err.message);
+        },
+      });
+    }, 1000);
   }
 }
