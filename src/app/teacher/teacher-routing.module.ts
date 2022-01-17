@@ -13,13 +13,9 @@ const routes: Routes = [
     component: StudentDataListComponent,
   },
   {
-    path:'view-student-details',
-    component:ViewStudentDetailsComponent,
+    path: 'viewDetails',
+    component: ViewStudentDetailsComponent,
   },
-  {
-    path:'details',
-    component:ViewStudentDetailsComponent,
-  }
 ];
 
 @NgModule({

@@ -5,11 +5,13 @@ import { StudentRoutingModule } from './student-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 
 import { UsersModule } from '../users/users.module';
+import { ExamListComponent } from './exam-list/exam-list.component';
 
 
 @NgModule({
   declarations: [
-    ProfileComponent
+    ProfileComponent,
+    ExamListComponent
   ],
   imports: [
     CommonModule,
