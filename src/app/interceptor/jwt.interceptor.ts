@@ -6,20 +6,22 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ApiService } from '../services/api.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  
-  constructor() {}
+
+  public token= this.apiService.token ? this.apiService.token :localStorage.getItem('token');
+    
+  constructor( private apiService:ApiService) {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    localStorage.getItem('token');
+    request = request.clone({
+      setHeaders: { 'access-token': `${this.token}` },
+    });
     return next.handle(request);
-    // request = request.clone({
-    //   setHeaders: { Authorization: `Bearer ${account.token}` },
-    // });
   }
 }

@@ -18,13 +18,16 @@ export class ProfileComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
+    
     this.apiService.getProfile().subscribe({
       next: (res: any) => {
         // console.log('res :>> ', res);
-        this.profileName = res.data.name;
-        this.profileEmail=res.data.email;
-        this.profileRole=res.data.role;
-        this.profileId=res.data._id;
+        setTimeout(() => {
+          this.profileName = res.data.name;
+          this.profileEmail=res.data.email;
+          this.profileRole=res.data.role;
+          this.profileId=res.data._id;
+        }, 100);
       },
       error: (err) => {
         console.log('err :>> ', err);

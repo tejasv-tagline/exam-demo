@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-view-student-details',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewStudentDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiService:ApiService) { }
 
   ngOnInit(): void {
+    
+    // this.apiService.getDetails(id)
+    // .subscribe({
+    //   next:(data)=>{console.log('data :>> ', data);}
+    // })
   }
 
+  
 }

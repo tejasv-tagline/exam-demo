@@ -1,21 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  public studentTtoken = localStorage.getItem('studentToken');
-  public teacherToken = localStorage.getItem('teacherToken');
+  // public studentTtoken = localStorage.getItem('studentToken');
+  // public teacherToken = localStorage.getItem('teacherToken');
+  public token = localStorage.getItem('token') || '';
+  private headers: any;
+  public isLoggedOut: boolean = false;
+  // public studentHeaders = new HttpHeaders().append(
+  //   'access-token',
+  //   this.studentTtoken ? this.studentTtoken : ''
+  // );
+  // public teacherHeaders = new HttpHeaders().append(
+  //   'access-token',
+  //   this.teacherToken ? this.teacherToken : ''
+  // );
 
-  public studentHeaders = new HttpHeaders().append(
-    'access-token',
-    this.studentTtoken ? this.studentTtoken : ''
-  );
-  public teacherHeaders = new HttpHeaders().append(
-    'access-token',
-    this.teacherToken ? this.teacherToken : ''
-  );
+  //  isToken() {
+  //     if(this.token){
+  //          this.headers = new HttpHeaders().append('access-token', this.token);
+  //     }
+  //   }
+
   constructor(private http: HttpClient) {
     // console.log('this.studenttoken :>> ', this.studentTtoken);
     // console.log('this.teachertoken :>> ', this.teacherToken);
@@ -34,17 +43,21 @@ export class ApiService {
       myForm
     );
   }
-  public getStudentsData() {
+  public getStudentsData(): Observable<any> {
     return this.http.get(
-      'https://nodejsexamination.herokuapp.com/dashboard/Teachers',
-      { headers: this.teacherHeaders }
+      'https://nodejsexamination.herokuapp.com/dashboard/Teachers'
     );
   }
 
-  public getProfile() {
+  public getProfile(): Observable<any> {
     return this.http.get(
-      'https://nodejsexamination.herokuapp.com/student/getStudentDetail',
-      { headers: this.studentHeaders }
+      'https://nodejsexamination.herokuapp.com/student/getStudentDetail'
+    );
+  }
+
+  public getDetails(id:string): Observable<any> {
+    return this.http.get(
+      'https://nodejsexamination.herokuapp.com/dashboard/Teachers/viewStudentDetail?id='+id
     );
   }
 }

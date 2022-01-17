@@ -32,6 +32,9 @@ import { JwtInterceptor } from './interceptor/jwt.interceptor';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
+  exports:[
+    HeaderComponent
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

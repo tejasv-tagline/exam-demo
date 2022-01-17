@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'viewDetails',
     component: ViewStudentDetailsComponent,
   },
+  {
+    path:'viewDetails/:id',
+    component:StudentDataListComponent,
+  }
 ];
 
 @NgModule({

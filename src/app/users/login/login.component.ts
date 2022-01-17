@@ -40,13 +40,14 @@ export class LoginComponent implements OnInit {
     this.apiService.getUserData(this.myLoginForm.value).subscribe({
       next: (res) => {
         if (res) {
+          this.apiService.isLoggedOut=true;
           if (res?.data.role == 'student') {
-            this.token = localStorage.setItem('studentToken', res.data.token);
+            this.token = localStorage.setItem('token', res.data.token);
             console.log('res.data.token :>> ', res.data.token);
             this.toaster.success(res.message);
             this.router.navigate(['student']);
           } else {
-            this.token = localStorage.setItem('teacherToken', res.data.token);
+            this.token = localStorage.setItem('token', res.data.token);
             this.router.navigate(['teacher']);
             this.toaster.success(res.message);
           }
