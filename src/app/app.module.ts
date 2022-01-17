@@ -9,11 +9,12 @@ import { TeacherRoutingModule } from './teacher/teacher-routing.module';
 import { TeacherModule } from './teacher/teacher.module';
 import { UsersRoutingModule } from './users/users-routing.module';
 import { UsersModule } from './users/users.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './headers/header/header.component';
+import { JwtInterceptor } from './interceptor/jwt.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -28,7 +29,9 @@ import { HeaderComponent } from './headers/header/header.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

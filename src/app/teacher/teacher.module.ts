@@ -12,6 +12,7 @@ import { StudentDataListComponent } from './student-data-list/student-data-list.
   imports: [
     CommonModule,
     TeacherRoutingModule
-  ]
+  ],
+  exports:[StudentDataListComponent]
 })
 export class TeacherModule { }

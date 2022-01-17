@@ -20,6 +20,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ReactiveFormsModule,
     FormsModule
   ],
-  exports:[ChangePasswordComponent]
+  exports:[ChangePasswordComponent,LoginComponent]
 })
 export class UsersModule { }
