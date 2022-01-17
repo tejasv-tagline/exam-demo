@@ -13,26 +13,26 @@ export class StudentDataListComponent implements OnInit {
   public passMessage!: string;
   public ShowData: any;
   public allData: showAllData[] = [];
-  token = localStorage.getItem('Token');
+  token = localStorage.getItem('teacherToken');
   constructor(private apiservice: ApiService, private toaster: ToastrService) {
     // console.log('token :>> ', token);
   }
 
   ngOnInit(): void {
-    console.log('token :>> ', this.token);
+    // console.log('token :>> ', this.token);
     setTimeout(() => {
       this.apiservice.getStudentsData().subscribe({
         next: (res: any) => {
           this.isShowedData = true;
           this.allData = res.data;
           this.passMessage = res.message;
-          console.log('res :>> ', res);
+          // console.log('res :>> ', res);
           this.toaster.success('', res.message);
         },
         error: (err) => {
           console.log('err.message :>> ', err.message);
         },
       });
-    }, 1000);
+    }, 800);
   }
 }

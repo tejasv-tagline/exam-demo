@@ -1,22 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import { StudentProfile } from 'src/app/interface/common';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  public token:any;
-  constructor(private apiService:ApiService) { }
-  
-  ngOnInit(): void {
-    this.token=localStorage.getItem('token');
-    this.apiService.getStudentsData()
-    .subscribe({
-      next:(data)=>console.log('data :>> ', data)
-    }
-    );
-  }
+  public token: any;
 
+  profileName: string = '';
+  profileEmail: string = '';
+  profileRole: string = '';
+  profileId: string = '';
+
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    this.apiService.getProfile().subscribe({
+      next: (res: any) => {
+        // console.log('res :>> ', res);
+        this.profileName = res.data.name;
+        this.profileEmail=res.data.email;
+        this.profileRole=res.data.role;
+        this.profileId=res.data._id;
+      },
+      error: (err) => {
+        console.log('err :>> ', err);
+      },
+    });
+  }
 }

@@ -5,15 +5,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  public token = localStorage.getItem('Token');
+  public studentTtoken = localStorage.getItem('studentToken');
+  public teacherToken = localStorage.getItem('teacherToken');
 
-  public headers = new HttpHeaders().append(
+  public studentHeaders = new HttpHeaders().append(
     'access-token',
-    this.token ? this.token : ''
+    this.studentTtoken ? this.studentTtoken : ''
   );
-
+  public teacherHeaders = new HttpHeaders().append(
+    'access-token',
+    this.teacherToken ? this.teacherToken : ''
+  );
   constructor(private http: HttpClient) {
-    console.log('this.token :>> ', this.token);
+    // console.log('this.studenttoken :>> ', this.studentTtoken);
+    // console.log('this.teachertoken :>> ', this.teacherToken);
   }
 
   public setUsername(myForm: any): Observable<any> {
@@ -32,7 +37,14 @@ export class ApiService {
   public getStudentsData() {
     return this.http.get(
       'https://nodejsexamination.herokuapp.com/dashboard/Teachers',
-      { headers: this.headers }
+      { headers: this.teacherHeaders }
+    );
+  }
+
+  public getProfile() {
+    return this.http.get(
+      'https://nodejsexamination.herokuapp.com/student/getStudentDetail',
+      { headers: this.studentHeaders }
     );
   }
 }

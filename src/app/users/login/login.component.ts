@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   public myLoginForm!: FormGroup;
   public isErrorMessage: boolean = false;
   public isLoginDone: boolean = false;
-  public token!: void;
+  public token: any = "";
   public isLoading: boolean = false;
 
   constructor(
@@ -37,11 +37,13 @@ export class LoginComponent implements OnInit {
     this.apiService.getUserData(this.myLoginForm.value).subscribe({
       next: (res) => {
         if (res) {
-          this.token = localStorage.setItem('Token', res.data.token);
           if (res?.data.role == 'student') {
+            this.token = localStorage.setItem('studentToken', res.data.token);
+            console.log('res.data.token :>> ', res.data.token);
             this.toaster.success(res.message);
             this.router.navigate(['student']);
           } else {
+            this.token = localStorage.setItem('teacherToken', res.data.token);
             this.router.navigate(['teacher']);
             this.toaster.success(res.message);
           }
