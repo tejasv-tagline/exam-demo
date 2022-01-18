@@ -7,6 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { SignupData, SignupDataResponse } from 'src/app/interface/common';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -22,7 +24,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private toaster:ToastrService
   ) {
     this.myForm = this.fb.group({
       name: ['',Validators.required],
@@ -57,10 +60,11 @@ export class SignupComponent implements OnInit {
     //   password: '123456789',
     //   role: 'student',
     // };
-
+    console.log('this.myForm.value :>> ', this.myForm.value);
     this.apiService.setUsername(this.myForm.value).subscribe({
-      next: (res) => {
+      next: (res:SignupDataResponse) => {
         console.log('post res :>> ', res);
+        this.toaster.success(res.message)
         this.router.navigate(['login']);
         // if(res.server)
       },

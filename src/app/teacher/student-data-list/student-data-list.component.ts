@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { showAllData } from 'src/app/interface/common';
+import { IStudentData, showAllData } from 'src/app/interface/common';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -34,9 +34,9 @@ export class StudentDataListComponent implements OnInit {
   }
   getStudentData() {
     this.apiservice.getStudentsData().subscribe({
-      next: (res: any) => {
+      next: (res: IStudentData) => {
         if (res.statusCode==200) {
-          console.log('res :>> ', res);
+          // console.log('res :>> ', res);
           setTimeout(() => {
             this.isShowedData = true;
             this.allData = res.data;

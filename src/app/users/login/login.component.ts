@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { LoginDataResponse, LoginData } from 'src/app/interface/common';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -38,12 +39,15 @@ export class LoginComponent implements OnInit {
   }
   public onLogin(): void {
     this.apiService.getUserData(this.myLoginForm.value).subscribe({
-      next: (res) => {
+      next: (res:LoginDataResponse) => {
         if (res) {
+          console.log('this.myLoginForm.value :>> ', this.myLoginForm.value);
+          console.log('Login response :>> ', res);
+          
           this.apiService.isLoggedOut=true;
           if (res?.data.role == 'student') {
             this.token = localStorage.setItem('token', res.data.token);
-            console.log('res.data.token :>> ', res.data.token);
+            // console.log('res.data.token :>> ', res.data.token);
             this.toaster.success(res.message);
             this.router.navigate(['student']);
           } else {

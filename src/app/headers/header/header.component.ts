@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -9,17 +9,21 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class HeaderComponent implements OnInit {
   // public isLoggedIn=this.apiService.isLoggedOut;
+  // public getToken:any=localStorage.getItem('token');
+  public tokenA:boolean=true;
 
   constructor(private router: Router, private apiService: ApiService) {}
+
   ngOnInit(): void {
-    // this.apiService.isLoggedOut.subscribe((value)=>{
-    //   console.log('value :>=======> ', value);
-    // });
-    // console.log('header :>> ', this.isLoggedIn);
+    if(localStorage.getItem('token')){
+        this.tokenA=false;
+      }
   }
 
   public logOutUser() {
+    this.tokenA=false;
     localStorage.removeItem('token');
     this.router.navigate(['login']);
   }
+  
 }

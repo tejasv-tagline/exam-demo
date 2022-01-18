@@ -6,6 +6,8 @@ import { StudentDataListComponent } from './student-data-list/student-data-list.
 import { ViewStudentDetailsComponent } from './view-student-details/view-student-details.component';
 import { UsersModule } from '../users/users.module';
 import { CreateExamComponent } from './create-exam/create-exam.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ViewExamComponent } from './view-exam/view-exam.component';
 
 
 @NgModule({
@@ -13,11 +15,14 @@ import { CreateExamComponent } from './create-exam/create-exam.component';
     StudentDataListComponent,
     ViewStudentDetailsComponent,
     CreateExamComponent,
+    ViewExamComponent,
   ],
   imports: [
     CommonModule,
     TeacherRoutingModule,
     UsersModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports:[StudentDataListComponent]
 })

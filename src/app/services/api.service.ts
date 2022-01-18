@@ -1,41 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { SignupData } from '../interface/common';
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  // public studentTtoken = localStorage.getItem('studentToken');
-  // public teacherToken = localStorage.getItem('teacherToken');
   public token = localStorage.getItem('token') || '';
   private headers: any;
   public isLoggedOut: boolean = false;
-  // public studentHeaders = new HttpHeaders().append(
-  //   'access-token',
-  //   this.studentTtoken ? this.studentTtoken : ''
-  // );
-  // public teacherHeaders = new HttpHeaders().append(
-  //   'access-token',
-  //   this.teacherToken ? this.teacherToken : ''
-  // );
 
-  //  isToken() {
-  //     if(this.token){
-  //          this.headers = new HttpHeaders().append('access-token', this.token);
-  //     }
-  //   }
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) {
-    // console.log('this.studenttoken :>> ', this.studentTtoken);
-    // console.log('this.teachertoken :>> ', this.teacherToken);
-  }
-
-  public setUsername(myForm: any): Observable<any> {
+  // Signup Api starts
+  public setUsername(myForm: SignupData): Observable<any> {
     return this.http.post(
       'https://nodejsexamination.herokuapp.com/users/SignUp',
       myForm
     );
   }
+  // Signup Api ends
+
+  // Login Api starts
 
   public getUserData(myForm: any): Observable<any> {
     return this.http.post(
@@ -43,6 +29,8 @@ export class ApiService {
       myForm
     );
   }
+  // Login Api ends
+
   public getStudentsData(): Observable<any> {
     return this.http.get(
       'https://nodejsexamination.herokuapp.com/dashboard/Teachers'
@@ -55,9 +43,22 @@ export class ApiService {
     );
   }
 
-  public getDetails(id:string): Observable<any> {
+  public getDetails(id: string): Observable<any> {
     return this.http.get(
       `https://nodejsexamination.herokuapp.com/dashboard/Teachers/viewStudentDetail?id=${id}`
     );
+  }
+
+  public createExam(myExamForm: any): Observable<any> {
+    return this.http.post(
+      'https://nodejsexamination.herokuapp.com/dashboard/Teachers/Exam',
+      myExamForm
+    );
+  }
+
+
+  // view exam api starts
+  public viewExam():Observable<any>{
+    return this.http.get('https://nodejsexamination.herokuapp.com/dashboard/Teachers/viewExam');
   }
 }

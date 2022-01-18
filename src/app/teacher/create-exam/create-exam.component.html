@@ -1,1 +1,48 @@
-<p>create-exam works!</p>
+<!-- <app-header></app-header> -->
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+
+        <form class="form mt-3" [formGroup]="myExamForm" (ngSubmit)="onSubmit()">
+            <div class="form-group d-flex justify-content-between mb-2">
+                <h3>Create Exam</h3>
+                <button class="btn btn-primary">Add Exam</button>
+            </div>
+
+            <div class="form-group mb-1">
+                <input type="text" formControlName="subjectName" class="form-control" id="exampleExamName"
+                    aria-describedby="examNameHelp" placeholder="Enter Exam Name">
+            </div>
+            <!-- <div class="d-flex justify-content-between">
+                <div class="form-group mt-1 mb-5">
+                    <input type="text" formControlName="notes" class="form-control" id="exampleNotes"
+                        aria-describedby="examNotesHelp" placeholder="Any Notes">
+                </div>
+                <button class="btn btn-primary">Add another</button>
+            </div> -->
+
+            <div class="form-group">
+                <input type="text" formControlName="question" class="form-control" id="exampleInputName"
+                    aria-describedby="questionHelp" placeholder="Enter Question">
+                <input type="text" formControlName="answer" class="form-control" id="exampleInputName"
+                    aria-describedby="answerHelp" placeholder="Enter Answer">
+                <!-- <div *ngIf="fControl['name'].touched && fControl['name'].errors?.['required']" class="custom-error">Name
+                    is required</div> -->
+                <div class="input-Group d-flex justify-content-between flex-wrap">
+                    <input type="text" formControlName="option1" #radioOption class="form-control custom-input mt-2"
+                        placeholder="Option A">
+                    <input type="text" formControlName="option2" #radioOption class="form-control custom-input mt-2"
+                        placeholder="Option B">
+                    <input type="text" formControlName="option3" #radioOption class="form-control custom-input mt-2"
+                        placeholder="Option C">
+                    <input type="text" formControlName="option4" #radioOption class="form-control custom-input mt-2"
+                        placeholder="Option D">
+                </div>
+            </div>
+            <button type="button" class="btn btn-success mt-3" (click)="addQuestion()">Add Question</button>
+            <!-- <button type="submit" class="btn btn-primary mt-3 ms-2" (click)="navigateLogin()">Login</button> -->
+            <!-- <p *ngIf="isSignedUpFailed" class="text-danger">Signup Failed Please Try again</p> -->
+        </form>
+    </div>
+    <div class="col-sm-2"></div>
+</div>
