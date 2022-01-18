@@ -1,4 +1,4 @@
-<div class="row m-0">
+<!-- <div class="row m-0">
     <div class="col-sm-1"></div>
     <div class="col-sm-10 mt-5">
     <h1 class="text-center mb-2">Showing your all exams</h1>
@@ -29,6 +29,35 @@
             </ng-container>
     </div>
     <div class="col-sm-1"></div>
-</div>
+</div> -->
 
+<ng-container *ngFor="let exam of allExamList">
 
+<div class="alert alert-success" role="alert" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="open(exam._id)">
+    {{exam.subjectName}}
+  </div>
+
+<div class="modal" id="exampleModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{examName}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-light">Email : {{email}}</li>
+                <li class="list-group-item bg-light">Exam Name : {{examName}}</li>
+                <li class="list-group-item bg-light">Id : {{id}}</li>
+                <li class="list-group-item bg-light">V : {{v}}</li>
+                <li class="list-group-item bg-light">Notes : {{notes}}</li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
