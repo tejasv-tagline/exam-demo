@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { showAllData } from 'src/app/interface/common';
@@ -15,13 +16,16 @@ export class StudentDataListComponent implements OnInit {
   public ShowData: any;
   public allData: showAllData[] = [];
   public token = localStorage.getItem('teacherToken');
-  public showed=new Observable()
+  public showed=new Observable();
+  
 
-  constructor(private apiservice: ApiService, private toaster: ToastrService) {
+
+  constructor(private apiservice: ApiService, private toaster: ToastrService, private route:ActivatedRoute) {
     // console.log('token :>> ', token);
   }
 
   ngOnInit(): void {
+
 
     // console.log('token :>> ', this.token);
 
@@ -48,11 +52,11 @@ export class StudentDataListComponent implements OnInit {
     });
   }
 
-  viewDetails(id:string){
-    console.log('id :>> ', id);
-    this.apiservice.getDetails(id).subscribe({
-      next:(res)=>{console.log('res :>> ', res);}
-    })
+  
   }
 
-}
+
+// this.myModal.addEventListener('shown.bs.modal', function () {
+//   myInput.focus()
+// })
+

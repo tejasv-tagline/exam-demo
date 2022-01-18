@@ -57,7 +57,7 @@ export class ApiService {
 
   public getDetails(id:string): Observable<any> {
     return this.http.get(
-      'https://nodejsexamination.herokuapp.com/dashboard/Teachers/viewStudentDetail?id='+id
+      `https://nodejsexamination.herokuapp.com/dashboard/Teachers/viewStudentDetail?id=${id}`
     );
   }
 }
