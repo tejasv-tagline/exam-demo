@@ -26,12 +26,15 @@
                     </div>
                     
                 </div>
-            </ng-container>
+        </ng-container>
     </div>
     <div class="col-sm-1"></div>
 </div> -->
-
-<ng-container *ngFor="let exam of allExamList">
+<div class="row m-0">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10 mt-5">
+    <h1 class="text-center mb-2">Showing your all exams</h1>
+        <ng-container *ngFor="let exam of allExamList">
 
 <div class="alert alert-success" role="alert" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="open(exam._id)">
     {{exam.subjectName}}
@@ -41,7 +44,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">{{examName}}</h5>
+          <h5 class="modal-title fs-2">{{examName}}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -54,6 +57,7 @@
             </ul>
         </div>
         <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" [routerLink]="['/viewExam/'+exam._id]">View Exam Details</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
@@ -61,3 +65,8 @@
   </div>
 
 </ng-container>
+
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+

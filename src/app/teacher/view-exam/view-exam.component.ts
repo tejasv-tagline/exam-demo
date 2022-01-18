@@ -50,12 +50,10 @@ export class ViewExamComponent implements OnInit {
   public open(id:string):void {
     this.allExamList.find((element) => {
       if(element._id === id){
-        // console.log('element :>> ', element);
         this.examName=element.subjectName;
         this.id=element._id;
         this.v=element.__v;
         this.email=element.email;
-        // console.log('element.notes :>> ', element.notes);
         this.notes=element.notes;
       } 
     })

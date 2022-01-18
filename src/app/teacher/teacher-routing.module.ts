@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateExamComponent } from './create-exam/create-exam.component';
 import { StudentDataListComponent } from './student-data-list/student-data-list.component';
 import { ViewExamComponent } from './view-exam/view-exam.component';
+import { ViewSingleExamDetailComponent } from './view-single-exam-detail/view-single-exam-detail.component';
 import { ViewStudentDetailsComponent } from './view-student-details/view-student-details.component';
 
 const routes: Routes = [
@@ -34,6 +35,10 @@ const routes: Routes = [
     path:'viewExam',
     component:ViewExamComponent
   },
+  {
+    path:'viewExam/:_id',
+    component:ViewSingleExamDetailComponent
+  }
 ];
 
 @NgModule({

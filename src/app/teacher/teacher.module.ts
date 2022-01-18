@@ -8,6 +8,7 @@ import { UsersModule } from '../users/users.module';
 import { CreateExamComponent } from './create-exam/create-exam.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewExamComponent } from './view-exam/view-exam.component';
+import { ViewSingleExamDetailComponent } from './view-single-exam-detail/view-single-exam-detail.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { ViewExamComponent } from './view-exam/view-exam.component';
     ViewStudentDetailsComponent,
     CreateExamComponent,
     ViewExamComponent,
+    ViewSingleExamDetailComponent,
   ],
   imports: [
     CommonModule,

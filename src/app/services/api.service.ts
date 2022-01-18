@@ -61,4 +61,13 @@ export class ApiService {
   public viewExam():Observable<any>{
     return this.http.get('https://nodejsexamination.herokuapp.com/dashboard/Teachers/viewExam');
   }
+  // view exam api ends
+
+
+  // view single exam api starts
+  public viewSingleExam(id:string):Observable<any>{
+    return this.http.get(`https://nodejsexamination.herokuapp.com/dashboard/Teachers/examDetail?id=${id}`)
+  }
+  // view single exam api ends
+
 }

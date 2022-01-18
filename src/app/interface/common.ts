@@ -58,3 +58,10 @@ export interface ViewAllExam {
 }
 
 // View all exam interface ends
+
+
+export interface AllQuestionBunch{
+  question:string,
+  answer:string,
+  options:string[]
+}
