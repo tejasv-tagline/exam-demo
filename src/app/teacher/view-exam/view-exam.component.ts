@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ViewAllExam } from 'src/app/interface/common';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -8,29 +9,37 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./view-exam.component.scss'],
 })
 export class ViewExamComponent implements OnInit {
-
   public examName!: string;
   public email!: string;
-  public id!:string;
-  public v!:string;
-  public notes=[];
-  public allExamList:ViewAllExam[]=[]
+  public id!: string;
+  public v!: string;
+  public notes = [];
+  public allExamList: ViewAllExam[] = [];
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService,private toaster:ToastrService) {}
 
   ngOnInit(): void {
     this.apiService.viewExam().subscribe({
       next: (res) => {
-        console.log('Exam Details -----:>> ', res);
-        console.log('res.data[0]. :>> ', res.data);
-        this.allExamList=res.data;
-        console.log('this.allExamList :>> ', this.allExamList);
-        // this.examName = res.data.subjectName;
-        // this.email = res.data.email;
-        // this.id = res.data._id;
-        // this.v = res.data._v;
-        // this.notes = res.data.notes;
+        if (res.statusCode == 200) {
+          this.toaster.success(res.message);
+          // console.log('Exam Details -----:>> ', res);
+          // console.log('res.data[0]. :>> ', res.data);
+          this.allExamList = res.data;
+          // console.log('this.allExamList :>> ', this.allExamList);1
+          // this.examName = res.data.subjectName;
+          // this.email = res.data.email;
+          // this.id = res.data._id;
+          // this.v = res.data._v;
+          // this.notes = res.data.notes;
+        }
+        else{
+          this.toaster.error(res.message);
+        }
       },
+      error:(err)=>{
+        this.toaster.error(err.message);
+      }
     });
   }
 }
