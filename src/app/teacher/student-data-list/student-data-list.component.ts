@@ -35,7 +35,8 @@ export class StudentDataListComponent implements OnInit {
   getStudentData() {
     this.apiservice.getStudentsData().subscribe({
       next: (res: any) => {
-        if (res) {
+        if (res.statusCode==200) {
+          console.log('res :>> ', res);
           setTimeout(() => {
             this.isShowedData = true;
             this.allData = res.data;
@@ -43,6 +44,9 @@ export class StudentDataListComponent implements OnInit {
             // console.log('res :>> ', res);
             this.toaster.success('', res.message);
           }, 1500);
+        }
+        else{
+          this.toaster.error(res.message)
         }
       },
       error: (err) => {

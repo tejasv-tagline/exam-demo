@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -14,19 +15,29 @@ export class ViewStudentDetailsComponent implements OnInit {
   public id!: string;
   public passId!: string;
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
+  constructor(
+    private apiService: ApiService,
+    private route: ActivatedRoute,
+    private toaster: ToastrService
+  ) {}
 
   ngOnInit(): void {
-    this.passId=this.route.snapshot.params['_id'];
-    console.log('this.passId :>> ', this.passId);
+    this.passId = this.route.snapshot.params['_id'];
+    // console.log('this.passId :>> ', this.passId);
     this.viewDetails();
   }
   viewDetails() {
     this.apiService.getDetails(this.passId).subscribe({
       next: (res) => {
-        this.name = res.data[0].name;
-        this.email = res.data[0].email;
-        this.id = res.data[0]._id;
+        if (res.statusCode == 200) {
+          // console.log('res :>> ', res);
+          this.toaster.success(res.message);
+          this.name = res.data[0].name;
+          this.email = res.data[0].email;
+          this.id = res.data[0]._id;
+        } else {
+          this.toaster.error(res.message);
+        }
       },
     });
   }
