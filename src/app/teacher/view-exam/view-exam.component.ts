@@ -16,7 +16,9 @@ export class ViewExamComponent implements OnInit {
   public v!: string;
   public notes: string[] = [];
   public allExamList: ViewAllExam[] = [];
-  closeResult!: string;
+  public closeResult!: string;
+  public isDataShowed:boolean=false;
+
 
   constructor(
     private apiService: ApiService,
@@ -27,6 +29,7 @@ export class ViewExamComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.viewExam().subscribe({
       next: (res) => {
+        this.isDataShowed=true;
         if (res.statusCode == 200) {
           this.toaster.success(res.message);
           this.allExamList = res.data;
@@ -44,6 +47,7 @@ export class ViewExamComponent implements OnInit {
     this.allExamList.find((element) => {
       if (element._id === id) {
         this.examName = element.subjectName;
+        localStorage.setItem('examName',this.examName);
         this.id = element._id;
         this.v = element.__v;
         this.email = element.email;

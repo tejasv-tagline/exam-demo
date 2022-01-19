@@ -63,6 +63,7 @@ export class SignupComponent implements OnInit {
     console.log('this.myForm.value :>> ', this.myForm.value);
     this.apiService.setUsername(this.myForm.value).subscribe({
       next: (res:SignupDataResponse) => {
+        
         console.log('post res :>> ', res);
         this.toaster.success(res.message)
         this.router.navigate(['login']);

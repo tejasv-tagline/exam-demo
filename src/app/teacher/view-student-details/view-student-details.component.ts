@@ -28,6 +28,7 @@ export class ViewStudentDetailsComponent implements OnInit {
   public viewDetails():void {
     this.apiService.getDetails(this.passId).subscribe({
       next: (res) => {
+        console.log('res :>> ', res);
         if (res.statusCode == 200) {
           this.toaster.success(res.message);
           this.name = res.data[0].name;

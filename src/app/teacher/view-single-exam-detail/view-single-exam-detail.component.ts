@@ -14,6 +14,8 @@ export class ViewSingleExamDetailComponent implements OnInit {
   public allQuestionBunch: AllQuestionBunch[] = [];
   // public questionNumbers: number[] = [];
   public options = ['A', 'B', 'C', 'D'];
+  public showExamName: string | null = '';
+  public isPageLoaded:boolean=false;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,19 +25,20 @@ export class ViewSingleExamDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.passId = this.route.snapshot.params['_id'];
+    this.showExamName=localStorage.getItem('examName');
     this.viewDetails();
   }
 
   public viewDetails(): void {
     this.apiService.viewSingleExam(this.passId).subscribe({
       next: (res) => {
+        this.isPageLoaded=true;
         if (res.statusCode == 200) {
           this.toaster.success(res.message);
           this.allQuestionBunch = res.data.questions;
           // for (let i = 0; i < res.data.questions.length; i++) {
           //   this.questionNumbers.push(i);
           // }
-          console.log('res.data.questions:>> ', res.data.questions);
         }
       },
     });

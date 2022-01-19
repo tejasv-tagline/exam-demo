@@ -1,19 +1,26 @@
-<ng-container *ngFor="let question of allQuestionBunch">
-    <div class="card m-5">
-        <div class="card-header">
-            {{question.question}}
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Question : {{question.question}}</h5>
-            <p class="card-text">Answer : {{question.answer}}</p>
-            <!-- <a href="#" class="btn btn-primary">{{question.options}}</a>
+<ng-container *ngIf="isPageLoaded">
+    <div class="d-flex justify-content-between m-5">
+        <h2>{{showExamName}}</h2>
+        <button class="btn btn-danger" routerLink="/teacher/viewExam"><i class="fas fa-backward me-2"></i>Back to
+            exam list</button>
+    </div>
+    <ng-container *ngFor="let question of allQuestionBunch">
+        <div class="card m-5 mt-2">
+            <div class="card-header">
+                {{question.question}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Question : {{question.question}}</h5>
+                <p class="card-text">Answer : {{question.answer}}</p>
+                <!-- <a href="#" class="btn btn-primary">{{question.options}}</a>
              -->
-            <!-- <div class="d-flex justify-content-between" >
+                <!-- <div class="d-flex justify-content-between" >
                 <p>Options : {{question.options}}</p>
             </div> -->
-            <div class="d-flex justify-content-between" *ngFor="let option of question.options">
-                <p> option : {{option}}</p>
+                <div class="d-flex justify-content-between" *ngFor="let option of question.options">
+                    <p> option : {{option}}</p>
+                </div>
             </div>
         </div>
-    </div>
+    </ng-container>
 </ng-container>

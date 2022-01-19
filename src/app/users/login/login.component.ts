@@ -50,14 +50,8 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['student']);
           } else {
             this.token = localStorage.setItem('token', res.data.token);
-            this.teacherName = localStorage.setItem(
-              'teacherName',
-              res.data.name
-            );
-            this.teacherEmail = localStorage.setItem(
-              'teacherEmail',
-              res.data.email
-            );
+            this.teacherName = localStorage.setItem('teacherName',res.data.name);
+            this.teacherEmail = localStorage.setItem('teacherEmail',res.data.email);
             this.router.navigate(['teacher']);
             this.toaster.success(res.message);
           }

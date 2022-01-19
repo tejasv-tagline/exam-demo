@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { loginForm, SignupData } from '../interface/common';
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,7 @@ export class ApiService {
 
   // Login Api starts
 
-  public getUserData(myForm:loginForm): Observable<any> {
+  public getUserData(myForm: loginForm): Observable<any> {
     return this.http.post(
       'https://nodejsexamination.herokuapp.com/users/Login',
       myForm
@@ -38,7 +38,6 @@ export class ApiService {
     );
   }
   // Students data list api ends
-
 
   public getProfile(): Observable<any> {
     return this.http.get(
@@ -59,18 +58,33 @@ export class ApiService {
     );
   }
 
-
   // view exam api starts
-  public viewExam():Observable<any>{
-    return this.http.get('https://nodejsexamination.herokuapp.com/dashboard/Teachers/viewExam');
+  public viewExam(): Observable<any> {
+    return this.http.get(
+      'https://nodejsexamination.herokuapp.com/dashboard/Teachers/viewExam'
+    );
   }
   // view exam api ends
 
-
   // view single exam api starts
-  public viewSingleExam(id:string):Observable<any>{
-    return this.http.get(`https://nodejsexamination.herokuapp.com/dashboard/Teachers/examDetail?id=${id}`)
+  public viewSingleExam(id: string): Observable<any> {
+    return this.http.get(
+      `https://nodejsexamination.herokuapp.com/dashboard/Teachers/examDetail?id=${id}`
+    );
   }
   // view single exam api ends
 
+  //Verify student data for exam api starts
+  public verifyStudentData(): Observable<any> {
+    return this.http.get(
+      'https://nodejsexamination.herokuapp.com/dashboard/Teachers/StudentForExam'
+    );
+  }
+
+  //Verify student data for exam api ends
+
+  //view all exams for students
+  public viewAllExams():Observable<any>{
+    return this.http.get('https://nodejsexamination.herokuapp.com/student/studentExam');
+  }
 }

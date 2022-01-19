@@ -6,7 +6,11 @@
         <form class="form mt-3" [formGroup]="myExamForm" (ngSubmit)="onSubmit()">
             <div class="form-group d-flex justify-content-between mb-2">
                 <h3>Create Exam</h3>
-                <button class="btn btn-primary">Add Exam</button>
+                <div>
+                    <button class="btn btn-danger me-3" routerLink="/teacher"><i class="fas fa-backward me-1"></i>Back to
+                        home</button>
+                    <button class="btn btn-primary">Add Exam</button>
+                </div>
             </div>
 
             <div class="form-group mb-1">

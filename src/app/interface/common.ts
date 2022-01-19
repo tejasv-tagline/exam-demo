@@ -27,16 +27,16 @@ export interface SignupData {
   role: string;
 }
 export interface SignupDataResponse {
-  data: SignupData[];
+  data: SignupData;
   message: string;
   statusCode: number;
 }
 // Signup Component Interfaces ends
 
 // Login Component Interfaces starts
-export interface loginForm{
-  email:string,
-  password:string
+export interface loginForm {
+  email: string;
+  password: string;
 }
 export interface LoginData {
   email: string;
@@ -61,18 +61,51 @@ export interface ViewAllExam {
   _id: string;
 }
 
-export interface TeacherLinks{
-  name:string,
-  email:string,
-  button:string,
-  routerPath:string
+export interface TeacherLinks {
+  name: string;
+  email: string;
+  button: string;
+  routerPath: string;
 }
 
 // Teacher Module interfaces ends
 
-
-export interface AllQuestionBunch{
-  question:string,
-  answer:string,
-  options:string[]
+export interface AllQuestionBunch {
+  question: string;
+  answer: string;
+  options: string[];
 }
+
+//Student Profile interface starts
+export interface ProfileData {
+  email: string;
+  name: string;
+  role: string;
+  _id: string;
+}
+
+export interface ProfileResponse {
+  data: ProfileData;
+  message: string;
+  statusCode: number;
+}
+
+//Student Profile interface ends
+
+//Verified students interface starts
+export interface VerifiedStudentsData {
+  email: string;
+  name: string;
+  status: string;
+  _id: string;
+}
+export interface VerifiedStudentsDataResponse {
+  statusCode: number;
+  count: number;
+  data: VerifiedStudentsData[];
+  message: string;
+  messageCode: number;
+}
+//Verified students interface ends
+
+//view students exam list interface starts

@@ -22,7 +22,7 @@ export class StudentDataListComponent implements OnInit {
   constructor(
     private apiservice: ApiService,
     private toaster: ToastrService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {
   }
 
@@ -53,4 +53,5 @@ export class StudentDataListComponent implements OnInit {
       },
     });
   }
+
 }
