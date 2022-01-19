@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   public isLoginDone: boolean = false;
   public token: any = '';
   public isLoading: boolean = false;
+  public teacherName: any;
+  public teacherEmail: any;
 
   constructor(
     private fb: FormBuilder,
@@ -53,8 +55,14 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['student']);
           } else {
             this.token = localStorage.setItem('token', res.data.token);
-            this.router.navigate(['teacher']);
+            // this.teacherName=res.data.name;
+            // this.teacherEmail=res.data.email;
+            // this.router.navigate(['teacher/'+this.teacherName+'/'+this.teacherEmail]);
+            this.teacherName=localStorage.setItem('teacherName',res.data.name);
+            this.teacherEmail=localStorage.setItem('teacherEmail',res.data.email);
+            this.router.navigate(['teacher'])
             this.toaster.success(res.message);
+            console.log('this.teacherName :>> ', this.teacherName);
           }
         }
       },

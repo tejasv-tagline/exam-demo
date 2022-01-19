@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewExamComponent } from './view-exam/view-exam.component';
 import { ViewSingleExamDetailComponent } from './view-single-exam-detail/view-single-exam-detail.component';
 import { TeacherHomeComponent } from './teacher-home/teacher-home.component';
+import { UsersRoutingModule } from '../users/users-routing.module';
 
 
 @NgModule({

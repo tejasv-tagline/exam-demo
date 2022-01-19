@@ -52,7 +52,7 @@ export interface LoginDataResponse {
 
 // Login Component Interfaces ends
 
-// View all exam interface starts
+// Teacher Module interfaces starts
 export interface ViewAllExam {
   email: string;
   notes: string[];
@@ -61,7 +61,14 @@ export interface ViewAllExam {
   _id: string;
 }
 
-// View all exam interface ends
+export interface TeacherLinks{
+  name:string,
+  email:string,
+  button:string,
+  routerPath:string
+}
+
+// Teacher Module interfaces ends
 
 
 export interface AllQuestionBunch{
