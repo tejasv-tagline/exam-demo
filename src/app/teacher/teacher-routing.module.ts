@@ -21,10 +21,10 @@ const routes: Routes = [
     path: 'studentDataList',
     component: StudentDataListComponent,
   },
-  {
-    path: 'viewDetails',
-    component: ViewStudentDetailsComponent,
-  },
+  // {
+  //   path: 'viewDetails',
+  //   component: ViewStudentDetailsComponent,
+  // },
   {
     path: 'viewDetails/:_id',
     component: ViewStudentDetailsComponent,

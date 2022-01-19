@@ -83,8 +83,18 @@ export class ApiService {
 
   //Verify student data for exam api ends
 
-  //view all exams for students
+  //view all exams for students starts
   public viewAllExams():Observable<any>{
     return this.http.get('https://nodejsexamination.herokuapp.com/student/studentExam');
   }
+  //view all exams for students ends
+
+
+
+  //View exam by id starts
+  public viewExamById(id:string):Observable<any>{
+    return this.http.get(`https://nodejsexamination.herokuapp.com/student/examPaper?id=${id}`);
+  }
+  //View exam by id ends
+
 }

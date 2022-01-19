@@ -22,7 +22,8 @@ export class ExamListComponent implements OnInit {
           this.isShowedData=true;
           this.toaster.success(res.message);
           this.studentExamList=res.data;
-          console.log('res :>> ', this.studentExamList);
+          // console.log('res.data[0]._id :>> ', res.data[0]._id);
+          // console.log('res :>> ', this.studentExamList[0]._id);
         }
       },
     });
