@@ -43,26 +43,23 @@ export class LoginComponent implements OnInit {
     this.apiService.getUserData(this.myLoginForm.value).subscribe({
       next: (res: LoginDataResponse) => {
         if (res) {
-          // console.log('this.myLoginForm.value :>> ', this.myLoginForm.value);
-          // console.log('Login response :>> ', res);
-
           this.apiService.isLoggedOut = true;
           if (res?.data.role == 'student') {
-            // localStorage.removeItem('token');
             this.token = localStorage.setItem('token', res.data.token);
-            // console.log('res.data.token :>> ', res.data.token);
             this.toaster.success(res.message);
             this.router.navigate(['student']);
           } else {
             this.token = localStorage.setItem('token', res.data.token);
-            // this.teacherName=res.data.name;
-            // this.teacherEmail=res.data.email;
-            // this.router.navigate(['teacher/'+this.teacherName+'/'+this.teacherEmail]);
-            this.teacherName=localStorage.setItem('teacherName',res.data.name);
-            this.teacherEmail=localStorage.setItem('teacherEmail',res.data.email);
-            this.router.navigate(['teacher'])
+            this.teacherName = localStorage.setItem(
+              'teacherName',
+              res.data.name
+            );
+            this.teacherEmail = localStorage.setItem(
+              'teacherEmail',
+              res.data.email
+            );
+            this.router.navigate(['teacher']);
             this.toaster.success(res.message);
-            console.log('this.teacherName :>> ', this.teacherName);
           }
         }
       },

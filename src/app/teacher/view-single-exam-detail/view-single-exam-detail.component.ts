@@ -11,9 +11,9 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class ViewSingleExamDetailComponent implements OnInit {
   public passId!: string;
-  public allQuestionBunch:AllQuestionBunch[]=[];
-  public questionNumbers:number[]=[]
-  // public qn!:any;
+  public allQuestionBunch: AllQuestionBunch[] = [];
+  // public questionNumbers: number[] = [];
+  public options = ['A', 'B', 'C', 'D'];
 
   constructor(
     private route: ActivatedRoute,
@@ -31,18 +31,10 @@ export class ViewSingleExamDetailComponent implements OnInit {
       next: (res) => {
         if (res.statusCode == 200) {
           this.toaster.success(res.message);
-          // console.log('res :>> ', res);
-          // console.log('res.data.questions :>> ', res.data.questions);
-          this.allQuestionBunch=res.data.questions;
-          // console.log('this.allQuestionBunch :>> ', this.allQuestionBunch);
-          // console.log('res.data.length :>> ', res.data.questions.length);
-          for(let i=0;i<res.data.questions.length;i++){
-            // console.log(typeof i);
-              this.questionNumbers.push(i);
-          }
-          // this.qn=this.questionNumbers.forEach(e=>{console.log('e :>> ', e);})
-          // console.log('this.qn :>> ', this.qn);
-          // console.log('this.questionNumbers :>> ', this.questionNumbers);
+          this.allQuestionBunch = res.data.questions;
+          // for (let i = 0; i < res.data.questions.length; i++) {
+          //   this.questionNumbers.push(i);
+          // }
           console.log('res.data.questions:>> ', res.data.questions);
         }
       },

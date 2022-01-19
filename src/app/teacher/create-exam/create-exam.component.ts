@@ -12,17 +12,17 @@ export class CreateExamComponent implements OnInit {
   public questionArray = [
     {
       question: '',
-      answer:'',
+      answer: '',
       option1: '',
       option2: '',
       option3: '',
       option4: '',
     },
   ];
-  public questionsObj:any = {};
-  public optionsList :any = [];
+  public questionsObj: any = {};
+  public optionsList: any = [];
   public questions = [
-    { 
+    {
       // question: '',
       // answer: '',
       // options: [
@@ -35,21 +35,19 @@ export class CreateExamComponent implements OnInit {
       // ],
     },
   ];
-  public optionList:any=[];
-
-
+  public optionList: any = [];
 
   constructor(private apiService: ApiService, private fb: FormBuilder) {
     this.myExamForm = this.fb.group({
       subjectName: [''],
       questions: [['']],
-      question:[''],
-      answer:[''],
+      question: [''],
+      answer: [''],
       option1: [''],
       option2: [''],
       option3: [''],
       option4: [''],
-      notes:[['10pm']],
+      notes: [['10pm']],
     });
   }
 
@@ -61,13 +59,14 @@ export class CreateExamComponent implements OnInit {
       this.myExamForm.value.option1,
       this.myExamForm.value.option2,
       this.myExamForm.value.option3,
-      this.myExamForm.value.option4,
-    )
-    console.log('this.optionList------------------------------- :>> ', this.optionList);
+      this.myExamForm.value.option4
+    );
+    console.log(
+      'this.optionList------------------------------- :>> ',
+      this.optionList
+    );
 
-    this.questionsObj['options']=this.optionsList;
-
-
+    this.questionsObj['options'] = this.optionsList;
 
     console.log('this.qu ---------:>> ', this.questionsObj);
     this.questionArray.push(this.myExamForm.value);

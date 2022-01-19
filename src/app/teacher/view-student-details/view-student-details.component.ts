@@ -23,14 +23,12 @@ export class ViewStudentDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.passId = this.route.snapshot.params['_id'];
-    // console.log('this.passId :>> ', this.passId);
     this.viewDetails();
   }
-  viewDetails() {
+  public viewDetails():void {
     this.apiService.getDetails(this.passId).subscribe({
       next: (res) => {
         if (res.statusCode == 200) {
-          // console.log('res :>> ', res);
           this.toaster.success(res.message);
           this.name = res.data[0].name;
           this.email = res.data[0].email;

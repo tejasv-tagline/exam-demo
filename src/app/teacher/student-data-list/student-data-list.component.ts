@@ -16,51 +16,41 @@ export class StudentDataListComponent implements OnInit {
   public ShowData: any;
   public allData: showAllData[] = [];
   public token = localStorage.getItem('teacherToken');
-  public showed=new Observable();
-  
+  public showed = new Observable();
+  public teacherName: string | null = localStorage.getItem('teacherName');
 
-
-  constructor(private apiservice: ApiService, private toaster: ToastrService, private route:ActivatedRoute) {
-    // console.log('token :>> ', token);
+  constructor(
+    private apiservice: ApiService,
+    private toaster: ToastrService,
+    private route: ActivatedRoute
+  ) {
   }
 
   ngOnInit(): void {
-
-
-    // console.log('token :>> ', this.token);
-
+    console.log(
+      'localStorage.getItem(`teacherName`) :>> ',
+      typeof localStorage.getItem('teacherName')
+    );
     this.getStudentData();
-    // }, 5000);
   }
-  getStudentData() {
+
+  public getStudentData():void {
     this.apiservice.getStudentsData().subscribe({
       next: (res: IStudentData) => {
-        if (res.statusCode==200) {
-          // console.log('res :>> ', res);
+        if (res.statusCode == 200) {
           setTimeout(() => {
             this.isShowedData = true;
             this.allData = res.data;
             this.passMessage = res.message;
-            // console.log('res :>> ', res);
             this.toaster.success('', res.message);
           }, 1500);
-        }
-        else{
-          this.toaster.error(res.message)
+        } else {
+          this.toaster.error(res.message);
         }
       },
       error: (err) => {
-        // console.log('err.message :>> ', err.message);
         this.toaster.error(err.message);
       },
     });
   }
-
-  
-  }
-
-
-// this.myModal.addEventListener('shown.bs.modal', function () {
-//   myInput.focus()
-// })
-
+}

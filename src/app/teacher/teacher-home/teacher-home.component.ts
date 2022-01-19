@@ -10,18 +10,10 @@ import { LoginComponent } from 'src/app/users/login/login.component';
   styleUrls: ['./teacher-home.component.scss'],
 })
 export class TeacherHomeComponent implements OnInit {
-  // public teacherLinks: TeacherLinks[] = [{
-  //   name:'',email:'',button:'',routerPath:''
-  // }];
   public teacherName: string | null= '';
   public teacherEmail: string | null= '';
 
-
-  constructor(
-    private router: Router,
-    private apiService: ApiService,
-    private route: ActivatedRoute
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.teacherName = localStorage.getItem('teacherName');
