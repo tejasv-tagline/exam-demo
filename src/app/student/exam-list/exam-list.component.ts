@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { ViewAllExams } from 'src/app/interface/common';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class ExamListComponent implements OnInit {
 
-  public studentExamList:any
+  public studentExamList:ViewAllExams[]=[];
+  public isShowedData:boolean=false;
 
   constructor(private apiService: ApiService,private toaster:ToastrService) {}
 
@@ -17,10 +19,10 @@ export class ExamListComponent implements OnInit {
     this.apiService.viewAllExams().subscribe({
       next: (res) => {
         if(res.statusCode==200){
+          this.isShowedData=true;
           this.toaster.success(res.message);
-          console.log('res :>> ', res.data);
-
-
+          this.studentExamList=res.data;
+          console.log('res :>> ', this.studentExamList);
         }
       },
     });

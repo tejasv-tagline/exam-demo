@@ -109,3 +109,10 @@ export interface VerifiedStudentsDataResponse {
 //Verified students interface ends
 
 //view students exam list interface starts
+export interface ViewAllExams{
+Result: string[],
+email: string,
+notes: string[],
+subjectName: string,
+_id: string
+}
