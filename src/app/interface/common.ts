@@ -34,6 +34,10 @@ export interface SignupDataResponse {
 // Signup Component Interfaces ends
 
 // Login Component Interfaces starts
+export interface loginForm{
+  email:string,
+  password:string
+}
 export interface LoginData {
   email: string;
   name: string;

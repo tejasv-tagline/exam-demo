@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   public myLoginForm!: FormGroup;
   public isErrorMessage: boolean = false;
   public isLoginDone: boolean = false;
-  public token: any = "";
+  public token: any = '';
   public isLoading: boolean = false;
 
   constructor(
@@ -34,18 +34,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public navigateRegister(){
-    this.router.navigate(['/signup'])
+  public navigateRegister() {
+    this.router.navigate(['/signup']);
   }
   public onLogin(): void {
     this.apiService.getUserData(this.myLoginForm.value).subscribe({
-      next: (res:LoginDataResponse) => {
+      next: (res: LoginDataResponse) => {
         if (res) {
-          console.log('this.myLoginForm.value :>> ', this.myLoginForm.value);
-          console.log('Login response :>> ', res);
-          
-          this.apiService.isLoggedOut=true;
+          // console.log('this.myLoginForm.value :>> ', this.myLoginForm.value);
+          // console.log('Login response :>> ', res);
+
+          this.apiService.isLoggedOut = true;
           if (res?.data.role == 'student') {
+            // localStorage.removeItem('token');
             this.token = localStorage.setItem('token', res.data.token);
             // console.log('res.data.token :>> ', res.data.token);
             this.toaster.success(res.message);

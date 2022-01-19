@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { SignupData } from '../interface/common';
+import { loginForm, SignupData } from '../interface/common';
 @Injectable({
   providedIn: 'root',
 })
@@ -23,7 +23,7 @@ export class ApiService {
 
   // Login Api starts
 
-  public getUserData(myForm: any): Observable<any> {
+  public getUserData(myForm:loginForm): Observable<any> {
     return this.http.post(
       'https://nodejsexamination.herokuapp.com/users/Login',
       myForm
@@ -31,11 +31,14 @@ export class ApiService {
   }
   // Login Api ends
 
+  // Students data list api starts
   public getStudentsData(): Observable<any> {
     return this.http.get(
       'https://nodejsexamination.herokuapp.com/dashboard/Teachers'
     );
   }
+  // Students data list api ends
+
 
   public getProfile(): Observable<any> {
     return this.http.get(
