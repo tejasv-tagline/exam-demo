@@ -25,7 +25,7 @@ export class ForgotPasswordComponent implements OnInit {
     private fb:FormBuilder
   ) {
     this.myForm=this.fb.group({
-      email:['',Validators.required]
+      email:['',[Validators.required,Validators.email]]
     })
   }
 
@@ -39,10 +39,10 @@ export class ForgotPasswordComponent implements OnInit {
 
   public sendMail():void {
     // console.log('this.sendData :>> ', this.sendData);
-    console.log('this.myFrom.value :>> ', this.myForm.value);
+    // console.log('this.myFrom.value :>> ', this.myForm.value);
     this.apiService.forgotPassword(this.myForm.value).subscribe({
       next: (res) => {
-        console.log('res :>> ', res);
+        // console.log('res :>> ', res);
         if (res.statusCode == 200) {
           this.toaster.success(res.message);
         } else {
