@@ -107,4 +107,10 @@ export class ApiService {
   public deleteExam(id:string):Observable<any>{
     return this.http.delete(`https://nodejsexamination.herokuapp.com/dashboard/Teachers/deleteExam?id=${id}`)
   }
+
+  //Forgot password api starts
+  public forgotPassword(myForm:any):Observable<any>{
+    return this.http.post('https://nodejsexamination.herokuapp.com/users/ForgotPassword',myForm)
+  }
+  //Forgot password api ends
 }

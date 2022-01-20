@@ -129,3 +129,9 @@ export interface ViewExamPaperResponse{
   data:viewExamData[],
   message:string
 }
+
+
+//Forgot password interface
+export interface SendData{
+  "email":string
+}
