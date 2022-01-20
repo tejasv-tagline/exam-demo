@@ -1,3 +1,7 @@
+<!-- <div class="d-flex justify-content-between">
+    <p>Your Profile</p>
+    <button class="btn btn-danger" routerLink="/student"><i class="fas fa-backward me-1"></i>Back to home</button>
+</div> -->
 <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
     <div class="card p-4 text-big">
         <div class="image d-flex flex-column justify-content-center align-items-center"> <button
@@ -8,7 +12,11 @@
                     class="idd1 mt-1">{{profileEmail}}</span> <span><i class="fa fa-copy"></i></span> </div>
             <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span
                     class="number mt-2">{{profileRole}}</span> </div>
-            <div class=" d-flex mt-2"> <button class="btn1 btn-dark mt-4">Edit Profile</button> </div>
+            <div class=" d-flex mt-2 justify-content-between">
+                <button class="btn1 btn-dark mt-4 me-2">Edit Profile</button>
+                <button class="btn btn-danger mt-4 ms-2" routerLink="/student"><i class="fas fa-backward me-1"></i>Back to home</button>
+            </div>
+
         </div>
     </div>
 </div>

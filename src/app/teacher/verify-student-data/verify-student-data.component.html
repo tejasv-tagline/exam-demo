@@ -1,19 +1,21 @@
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th scope="col">Status</th>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-        </tr>
 
-    </thead>
-    <tbody>
-        <tr *ngFor="let student of verifiedStudents">
-            <td>{{student.status}}</td>
-            <td>{{student._id}}</td>
-            <td>{{student.name}}</td>
-            <td>{{student.email}}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="container mt-5" *ngIf="isDataShowed">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Status</th>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of verifiedStudents">
+                <td>{{student.status}}</td>
+                <td>{{student._id}}</td>
+                <td>{{student.name}}</td>
+                <td>{{student.email}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

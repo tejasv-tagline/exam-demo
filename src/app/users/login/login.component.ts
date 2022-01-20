@@ -16,8 +16,10 @@ export class LoginComponent implements OnInit {
   public isLoginDone: boolean = false;
   public token: any = '';
   public isLoading: boolean = false;
-  public teacherName: any;
-  public teacherEmail: any;
+  public teacherName!: void;
+  public teacherEmail!: void;
+  public studentName!: void;
+  public studentEmail!: void;
 
   constructor(
     private fb: FormBuilder,
@@ -46,12 +48,26 @@ export class LoginComponent implements OnInit {
           this.apiService.isLoggedOut = true;
           if (res?.data.role == 'student') {
             this.token = localStorage.setItem('token', res.data.token);
+            this.studentName = localStorage.setItem(
+              'studentName',
+              res.data.name
+            );
+            this.studentEmail = localStorage.setItem(
+              'studentEmail',
+              res.data.email
+            );
             this.toaster.success(res.message);
             this.router.navigate(['student']);
           } else {
             this.token = localStorage.setItem('token', res.data.token);
-            this.teacherName = localStorage.setItem('teacherName',res.data.name);
-            this.teacherEmail = localStorage.setItem('teacherEmail',res.data.email);
+            this.teacherName = localStorage.setItem(
+              'teacherName',
+              res.data.name
+            );
+            this.teacherEmail = localStorage.setItem(
+              'teacherEmail',
+              res.data.email
+            );
             this.router.navigate(['teacher']);
             this.toaster.success(res.message);
           }
