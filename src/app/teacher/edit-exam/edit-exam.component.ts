@@ -19,7 +19,7 @@ export class EditExamComponent implements OnInit {
   public isPageLoaded: boolean = false;
   public myForm!: FormGroup;
   public staticUpdateObject = {};
-  public staticExamName: string = 'GPSC preliminary exam';
+  public staticExamName=localStorage.getItem('examName');
   public staticNotes = [
     'Exam is canceled',
     'Exam is going to be taken on 25th january',
@@ -34,8 +34,7 @@ export class EditExamComponent implements OnInit {
 
   ngOnInit(): void {
     this.passId = this.route.snapshot.params['id'];
-    this.showExamName = localStorage.getItem('examName');
-    console.log('this.showExamName :>> ', this.showExamName);
+    
     this.viewDetails();
   }
   get fControl() {
@@ -46,14 +45,10 @@ export class EditExamComponent implements OnInit {
       next: (res) => {
         this.isPageLoaded = true;
         if (res.statusCode == 200) {
+          this.showExamName = localStorage.getItem('examName');
           console.log('examName :>> ', this.showExamName);
           this.toaster.success(res.message);
           this.allQuestionBunch = res.data.questions;
-          // console.log('this.allQuestionBunch :>> ', this.allQuestionBunch);
-          // console.log('Response :>> ', res);
-          // for (let i = 0; i < res.data.questions.length; i++) {
-          //   this.questionNumbers.push(i);
-          // }
         }
       },
     });

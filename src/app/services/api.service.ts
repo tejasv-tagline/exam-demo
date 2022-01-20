@@ -102,4 +102,9 @@ export class ApiService {
     return this.http.put(`https://nodejsexamination.herokuapp.com/dashboard/Teachers/editExam?id=${id}`,myForm)
   }
   //Edit exam api ends
+
+  //Delete exam api starts
+  public deleteExam(id:string):Observable<any>{
+    return this.http.delete(`https://nodejsexamination.herokuapp.com/dashboard/Teachers/deleteExam?id=${id}`)
+  }
 }

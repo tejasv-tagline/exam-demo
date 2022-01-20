@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ViewAllExam } from 'src/app/interface/common';
 import { ApiService } from 'src/app/services/api.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-exam',
@@ -23,7 +24,7 @@ export class ViewExamComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private toaster: ToastrService,
-    private modalService: NgbModal
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -55,4 +56,28 @@ export class ViewExamComponent implements OnInit {
       }
     });
   }
+
+  public deleteExam(id:string){
+    this.apiService.deleteExam(id).subscribe({
+      next:(res)=>{
+        console.log('res :>> ', res);
+        this.toaster.success(res.message);
+        window.location.reload();
+      }
+    })
+  }
+  // public deleteExam(id:string){
+  //   this.apiService.deleteExam().subscribe({
+  //     next:(res)=>{
+  //       console.log('res :>> ', res);
+  //       if(res.statusCode==200){
+  //         this.toaster.success(res.message);
+
+  //       }
+  //       else{
+  //         this.toaster.error(res.message);
+  //       }
+  //     }
+  //   })
+  // }
 }
