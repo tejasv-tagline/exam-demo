@@ -97,4 +97,9 @@ export class ApiService {
   }
   //View exam by id ends
 
+  //Edit exam api starts
+  public editTeacherExam(id:string,myForm:any):Observable<any>{
+    return this.http.put(`https://nodejsexamination.herokuapp.com/dashboard/Teachers/editExam?id=${id}`,myForm)
+  }
+  //Edit exam api ends
 }

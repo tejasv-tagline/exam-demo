@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateExamComponent } from './create-exam/create-exam.component';
+import { EditExamComponent } from './edit-exam/edit-exam.component';
 import { StudentDataListComponent } from './student-data-list/student-data-list.component';
 import { TeacherHomeComponent } from './teacher-home/teacher-home.component';
 import { VerifyStudentDataComponent } from './verify-student-data/verify-student-data.component';
@@ -46,13 +47,21 @@ const routes: Routes = [
     component: ViewSingleExamDetailComponent,
   },
   {
-    path:'verifyStudentData',
-    component:VerifyStudentDataComponent
+    path: 'verifyStudentData',
+    component: VerifyStudentDataComponent,
   },
   {
-    path:'**',
-    redirectTo:''
-  }
+    path: 'editExam',
+    component: EditExamComponent,
+  },
+  {
+    path: 'editExam/:id',
+    component: EditExamComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];
 
 @NgModule({

@@ -12,6 +12,7 @@ import { ViewSingleExamDetailComponent } from './view-single-exam-detail/view-si
 import { TeacherHomeComponent } from './teacher-home/teacher-home.component';
 import { UsersRoutingModule } from '../users/users-routing.module';
 import { VerifyStudentDataComponent } from './verify-student-data/verify-student-data.component';
+import { EditExamComponent } from './edit-exam/edit-exam.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { VerifyStudentDataComponent } from './verify-student-data/verify-student
     ViewSingleExamDetailComponent,
     TeacherHomeComponent,
     VerifyStudentDataComponent,
+    EditExamComponent,
   ],
   imports: [
     CommonModule,
