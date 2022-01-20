@@ -7,19 +7,19 @@ import { ProfileComponent } from './profile/profile.component';
 import { UsersModule } from '../users/users.module';
 import { ExamListComponent } from './exam-list/exam-list.component';
 import { ExamPaperComponent } from './exam-paper/exam-paper.component';
+import { StudentHomeComponent } from './student-home/student-home.component';
 
 
 @NgModule({
   declarations: [
     ProfileComponent,
     ExamListComponent,
-    ExamPaperComponent
+    ExamPaperComponent,
+    StudentHomeComponent
   ],
   imports: [
     CommonModule,
     StudentRoutingModule,
-
-    UsersModule
   ]
 })
 export class StudentModule { }

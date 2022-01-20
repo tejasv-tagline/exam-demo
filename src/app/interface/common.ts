@@ -116,3 +116,16 @@ notes: string[],
 subjectName: string,
 _id: string
 }
+//view students exam list interface ends
+
+//View exam paper interface starts
+export interface viewExamData{
+  options:string[],
+  _id:string,
+  question:string
+}
+export interface ViewExamPaperResponse{
+  statusCode:number,
+  data:viewExamData[],
+  message:string
+}

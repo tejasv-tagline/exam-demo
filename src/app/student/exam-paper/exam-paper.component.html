@@ -1,1 +1,25 @@
-<p>exam-paper works!</p>
+<div class="container" *ngIf="isExamShowed">
+    <div class="d-flex justify-content-between">
+        <p></p>
+        <button class="btn btn-danger" routerLink="/student"><i class="fas fa-backward me-1"></i>Back to home</button>
+    </div>
+    <div class="card p-3">
+        <div *ngFor="let question of questionList" class="card p-3">
+            <p class="text-muted custom-font">id: {{question._id}}</p>
+            <p> 
+                <!-- Question : <span *ngFor="let index of indexArray">{{index}}</span> -->
+                {{question.question}}</p>
+            <div class="d-flex justify-content-between flex-wrap">
+                <p class="w-50">(a) 
+                    <!-- <input type="radio" name="option" [value]="question.options[0]"> -->
+                     {{question.options[0]}}</p>
+                <p class="w-50">(b) {{question.options[1]}}</p>
+                <p class="w-50">(c) {{question.options[2]}}</p>
+                <p class="w-50">(d) {{question.options[3]}}</p>
+            </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-center">
+            <button type="submit" class="mt-2 btn btn-primary w-25">Submit exam</button>
+        </div>
+    </div>
+</div>

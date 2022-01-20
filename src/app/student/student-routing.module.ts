@@ -14,17 +14,21 @@ const routes: Routes = [
     component: ProfileComponent,
   },
   {
-    path:'viewExamList',
-    component:ExamListComponent,
+    path: 'viewExamList',
+    component: ExamListComponent,
   },
   // {
-  //   path:'examPaper',
-  //   component:ExamPaperComponent
+  //   path: 'examPaper',
+  //   component: ExamPaperComponent,
   // },
   {
-    path:'examPaper/:_id',
-    component:ExamPaperComponent,
+    path: 'examPaper/:_id',
+    component: ExamPaperComponent,
   },
+  {
+    path:'**',
+    redirectTo:'',
+  }
   // {
   //   path:'examPaper/:id',
   //   component:ExamPaperComponent,
