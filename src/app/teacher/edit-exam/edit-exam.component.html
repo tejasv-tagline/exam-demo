@@ -1,6 +1,7 @@
 <ng-container *ngIf="isPageLoaded">
     <div class="d-flex justify-content-between m-5">
-        <h2>{{showExamName}}</h2>
+        
+        <input type="text" [(ngModel)]="staticExamName" value="{{showExamName}}" class="form-control w-50">
         <div class="d-flex justify-content-between">
             <!-- <button class="btn btn-warning me-3" [routerLink]="['/teacher/viewExam'+{{passId}}"><i class="fas fa-edit"></i> Edit
                 exam</button> -->

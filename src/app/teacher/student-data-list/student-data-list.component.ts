@@ -22,9 +22,8 @@ export class StudentDataListComponent implements OnInit {
   constructor(
     private apiservice: ApiService,
     private toaster: ToastrService,
-    private route: ActivatedRoute,
-  ) {
-  }
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     console.log(
@@ -34,7 +33,7 @@ export class StudentDataListComponent implements OnInit {
     this.getStudentData();
   }
 
-  public getStudentData():void {
+  public getStudentData(): void {
     this.apiservice.getStudentsData().subscribe({
       next: (res: IStudentData) => {
         if (res.statusCode == 200) {
@@ -42,6 +41,7 @@ export class StudentDataListComponent implements OnInit {
             this.isShowedData = true;
             this.allData = res.data;
             this.passMessage = res.message;
+            
             this.toaster.success('', res.message);
           }, 1500);
         } else {
@@ -53,5 +53,4 @@ export class StudentDataListComponent implements OnInit {
       },
     });
   }
-
 }

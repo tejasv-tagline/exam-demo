@@ -32,6 +32,8 @@ export class ViewSingleExamDetailComponent implements OnInit {
   public viewDetails(): void {
     this.apiService.viewSingleExam(this.passId).subscribe({
       next: (res) => {
+        console.log('Full response viewDetails', res);
+
         this.isPageLoaded=true;
         if (res.statusCode == 200) {
           this.toaster.success(res.message);

@@ -25,7 +25,7 @@ export class ViewStudentDetailsComponent implements OnInit {
     this.passId = this.route.snapshot.params['_id'];
     this.viewDetails();
   }
-  public viewDetails():void {
+  public viewDetails(): void {
     this.apiService.getDetails(this.passId).subscribe({
       next: (res) => {
         console.log('res :>> ', res);
