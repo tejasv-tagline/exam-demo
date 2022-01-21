@@ -1,52 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-testing-form',
   templateUrl: './testing-form.component.html',
-  styleUrls: ['./testing-form.component.scss'],
+  styleUrls: ['./testing-form.component.scss']
 })
 export class TestingFormComponent implements OnInit {
-  public myForm!: FormGroup;
-  public items!: FormArray;
+  public myForm!:FormGroup;
+  skills: FormArray;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
-    this.myForm=this.fb.group({
-      lessions:this.fb.array([])
+    this.myForm=new FormGroup({
+      skills:new FormArray([      ])
     })
-    // this.myForm = new FormGroup({
-    //   items: new FormArray([]),
-    // });
+    this.onAddSkills();
   }
 
-  get lessions(){
-    return this.myForm.controls['lessions'] as FormArray;
+  // get fControl(){
+  //   return this.myForm.controls;
+  // }
+
+// get skills() : FormArray {
+//   return this.myForm.get('skills') as FormArray
+// }
+  public onAddSkills():void{
+    this.skills = this.myForm.get('skills') as FormArray;
+    this.skills.push((new FormControl()));
+    console.log('this.skills :>> ', this.skills.value);
   }
-
-  // public addLesson(){
-  //   const lessionForm = this.fb.group({
-  //     title:'',
-  //     level:''
-  //   })
-  //   this.lessions.push(lessionForm)
-  // }
-
-  // createItem(): FormGroup {
-  //   return this.fb.group({
-  //     name: '',
-  //     description: '',
-  //     price: '',
-  //   });
-  // }
-
-  // addItem(): void {
-  //   this.items = this.myForm.get('items') as FormArray;
-  //   this.items.push(this.createItem());
-  // }
-
-  // showItem() {
-  //   console.log(this.myForm.value);
-  // }
 }
