@@ -3,14 +3,13 @@
     <div class="d-flex justify-content-center mt-5">
         <form [formGroup]="myForm" (ngSubmit)="createExam()" class="c-form">
             <h2>Create exam</h2>
-            <div class="form-group d-flex justify-content-between">
                 <input type="text" formControlName="subjectName" class="form-control w-50"
                     placeholder="Enter Subject Name" >
-                <div class="d-flex justify-content-between" [ngClass]="{'ms-5':isShowButton}">
-                    <button class="btn btn-primary form-control" [ngClass]="{'me-5':isShowButton}" type="submit">Create exam</button>
+                <div class="d-flex justify-content-between mt-3">
+                    <button class="btn btn-primary form-control me-5" type="submit" [disabled]="!fifteenQuestionsDone">Create exam</button>
+                    <button class="btn btn-danger form-control" [ngClass]="{'me-5':isShowButton,'ms-5':!isShowButton}" routerLink="/teacher" type="button">Back to home</button>
                     <button class="btn btn-success form-control ms-1" type="button" *ngIf="isShowButton" routerLink="/viewExam">View all exams</button>
                 </div>
-            </div>
             <div formArrayName="questions" *ngFor="let question of myForm.get('questions')['controls']; let i=index;"
                 class="mt-5 card p-2">
                 <div [formGroupName]="i">
@@ -32,8 +31,8 @@
 
             </div>
             <!-- <div class="form-group mt-3 d-flex justify-content-between">
-                <input type="text" placeholder="notes" formControlName="notes" class="form-control w-75 me-1">
-                <button class="btn form-control w-25 btn-primary ms-3" (click)="addNote()">Add note</button>
+                <input type="text" placeholder="notes" formControlName="notes" [(ngModel)]="notesAnswers" class="form-control w-75 me-1">
+                <button type="button" class="btn form-control w-25 btn-primary ms-3" (click)="addNote()">Add note</button>
             </div> -->
 
         </form>

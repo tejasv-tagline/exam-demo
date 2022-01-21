@@ -19,23 +19,33 @@ export class CreateExamComponent implements OnInit {
   // public options!:FormArray;
   public questions!: FormArray;
   // public notes!:FormArray;
-  public note:any='';
-  public isShowButton:boolean=false;
+  public note: any = '';
+  public isShowButton: boolean = false;
+  public fifteenQuestionsDone: boolean = false;
+  public notes=[];
 
-  constructor(private fb: FormBuilder,private apiService:ApiService,private toaster:ToastrService ) {}
+  constructor(
+    private fb: FormBuilder,
+    private apiService: ApiService,
+    private toaster: ToastrService
+  ) {}
 
   ngOnInit(): void {
-    this.myForm = new FormGroup({
+    this.myForm =this.fb.group({
       subjectName: new FormControl('This is testing exam'),
       questions: new FormArray([]),
-      notes: new FormControl(['Tejash','Arvind']),
+      notes: [['tejash','arvind']],
+      // notes: new FormControl(['Tejash', 'Arvind']),
     });
 
-    console.log('this.myForm.get(notes).value :>> ', this.myForm.get('notes').value);
+    // console.log(
+    //   'this.myForm.get(notes).value :>> ',
+    //   this.myForm.get('notes').value
+    // );
     this.addQuestion();
   }
-  
-  public createNote(){
+
+  public createNote() {
     // return this.fb.group({
     //   note:''
     // })
@@ -48,7 +58,7 @@ export class CreateExamComponent implements OnInit {
     return this.fb.group({
       question: 'This is question',
       answer: 'This is answer',
-      options: new FormControl(['option1','option2','option3','option4'])
+      options: new FormControl(['option1', 'option2', 'option3', 'option4']),
     });
     // return this.fb.group({
     //   question: '',
@@ -61,30 +71,33 @@ export class CreateExamComponent implements OnInit {
     // this.options.push('option1');
     this.questions = this.myForm.get('questions') as FormArray;
     this.questions.push(this.createQuestion());
-    
+    // console.log('this.myForm.length :>> ', this.questions.length);
+    if (this.questions.length > 14 && this.questions.length<16) {
+      this.fifteenQuestionsDone = true;
+    }
   }
-  public removeQuestion(i:number){
+  public removeQuestion(i: number) {
     // this.questions=this.myForm.get('questions') as FormArray
     // if(i>0){
-      this.questions.removeAt(i);
+    this.questions.removeAt(i);
     // }
   }
 
-  public createExam(){
+  public createExam() {
     console.log('this.myForm.value :>> ', this.myForm.value);
     this.apiService.createExam(this.myForm.value).subscribe({
-      next:(res)=>{
-        if(res.statusCode==200){
-          this.isShowButton=true;
-          this.toaster.success(res.message);
-        console.log('res :>> ', res);
-        }
-        else{
+      next: (res) => {
+        if (res.statusCode == 200) {
+          this.isShowButton = true;
+          this.toaster.success(res.data.subjectName,res.message);
+          // console.log('res :>> ', res);
+        } else {
           this.toaster.error(res.message);
         }
-      },error:(err)=>{
-         this.toaster.error(err);
-      }
-    })
+      },
+      error: (err) => {
+        this.toaster.error(err);
+      },
+    });
   }
 }
