@@ -1,3 +1,32 @@
+<!-- <p>Start editing to see some magic happen :)</p>
 <div [formGroup]="myForm">
+  <div formArrayName="items" *ngFor="let item of myForm.get('items').controls; let i = index">
+    <div [formGroupName]="i">
+      <input formControlName="name" placeholder="Item name" />
+      <input formControlName="description" placeholder="Item description" />
+      <input formControlName="price" placeholder="Item price" />
+    </div>
 
+    Chosen name: {{ myForm.controls.items.controls[i].controls.name.value }}
+  </div>
 </div>
+<button (click)="addItem()">Add</button>
+<button (click)="showItem()">Add 2</button> -->
+
+<!-- 
+<div [formGroup]="myForm">
+   <ng-container formArrayName="lessions">
+     <ng-container *ngFor="let lessionForm of lessions.controls;let i=index">
+        <div [formGroup]="lessionForm">
+          <input type="text" formControlName="title" placeholder="lession title"><br>
+          <input type="text" formControlName="level" placeholder="level">
+
+        </div>
+  </ng-container>
+      
+   </ng-container>
+   <button class="btn btn-primary" (click)="addLesson()">
+    <p class="add-course-btn">add</p>
+    </button>
+    
+</div> -->

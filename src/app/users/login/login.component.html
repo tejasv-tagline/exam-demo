@@ -23,7 +23,7 @@
             </div>
             <p class="mt-2"><a routerLink="forgotPassword">Forgot password? click here</a> </p>
             <button type="submit" class="btn btn-primary mt-3" [disabled]="!myLoginForm.valid">Login</button>
-            <button type="submit" class="btn btn-primary mt-3 ms-2" (click)="navigateRegister()">Register</button>
+            <button type="button" class="btn btn-primary mt-3 ms-2" (click)="navigateRegister()">Register</button>
             <p class="text-success" *ngIf="isLoginDone">{{isLoginDone}}</p>
             <p class="text-danger" *ngIf="isErrorMessage">{{isErrorMessage}}</p>
         </form>

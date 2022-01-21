@@ -63,14 +63,18 @@ export class SignupComponent implements OnInit {
     console.log('this.myForm.value :>> ', this.myForm.value);
     this.apiService.setUsername(this.myForm.value).subscribe({
       next: (res:SignupDataResponse) => {
-        
+        if(res.statusCode==200){
         console.log('post res :>> ', res);
         this.toaster.success(res.message)
         this.router.navigate(['login']);
         // if(res.server)
+        }else{
+          this.toaster.error(res.message);
+        }
       },
       error: (err) => {
-        this.isSignedUpFailed = true;
+        // this.isSignedUpFailed = true;
+        this.toaster.error(err);
         this.isSignedUpFailed = err.message;
       },
     });
