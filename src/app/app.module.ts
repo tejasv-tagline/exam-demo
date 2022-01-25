@@ -15,7 +15,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './headers/header/header.component';
 import { JwtInterceptor } from './interceptor/jwt.interceptor';
-
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [

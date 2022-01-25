@@ -24,35 +24,48 @@ export class EditExamComponent implements OnInit {
     'Exam is canceled',
     'Exam is going to be taken on 25th january',
   ];
+  public isLoading:boolean=true;
+  public response=this.activatedRoute.snapshot.data['viewSingleExamResolver']
 
   constructor(
     private apiService: ApiService,
     private toaster: ToastrService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.passId = this.route.snapshot.params['id'];
+    this.passId = this.activatedRoute.snapshot.params['_id'];
     
-    this.viewDetails();
+    // this.viewDetails();
+    if(this.response.statusCode==200){
+      this.isPageLoaded=true;
+      this.showExamName = localStorage.getItem('examName');
+      this.toaster.success(this.response.message);
+      this.allQuestionBunch=this.response.data.questions;
+    }
+    else{
+      this.toaster.error(this.response.message)
+    }
+    
   }
   get fControl() {
     return this.myForm.controls;
   }
-  public viewDetails(): void {
-    this.apiService.viewSingleExam(this.passId).subscribe({
-      next: (res) => {
-        this.isPageLoaded = true;
-        if (res.statusCode == 200) {
-          this.showExamName = localStorage.getItem('examName');
-          console.log('examName :>> ', this.showExamName);
-          this.toaster.success(res.message);
-          this.allQuestionBunch = res.data.questions;
-        }
-      },
-    });
-  }
+  // public viewDetails(): void {
+  //   this.apiService.viewSingleExam(this.passId).subscribe({
+  //     next: (res) => {
+  //       this.isPageLoaded = true;
+  //       if (res.statusCode == 200) {
+  //         this.isLoading=false;
+  //         this.showExamName = localStorage.getItem('examName');
+  //         console.log('examName :>> ', this.showExamName);
+  //         this.toaster.success(res.message);
+  //         this.allQuestionBunch = res.data.questions;
+  //       }
+  //     },
+  //   });
+  // }
 
   public editExam(): void {
     this.staticUpdateObject = {
