@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./student-data-list.component.scss'],
 })
 export class StudentDataListComponent implements OnInit {
-  public isShowedData: boolean = false;
+  // public isShowedData: boolean = false;
   public passMessage!: string;
   public ShowData: any;
   public allData: showAllData[] = [];
@@ -22,7 +22,7 @@ export class StudentDataListComponent implements OnInit {
   constructor(
     private apiservice: ApiService,
     private toaster: ToastrService,
-    private route: ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -30,27 +30,28 @@ export class StudentDataListComponent implements OnInit {
       'localStorage.getItem(`teacherName`) :>> ',
       typeof localStorage.getItem('teacherName')
     );
-    this.getStudentData();
+    // this.getStudentData();
+    this.allData = this.activatedRoute.snapshot.data['studentList'].data;
+    console.log('this.allData :>> ', this.allData);
   }
 
-  public getStudentData(): void {
-    this.apiservice.getStudentsData().subscribe({
-      next: (res: IStudentData) => {
-        if (res.statusCode == 200) {
-          setTimeout(() => {
-            this.isShowedData = true;
-            this.allData = res.data;
-            this.passMessage = res.message;
-            
-            this.toaster.success('', res.message);
-          }, 1500);
-        } else {
-          this.toaster.error(res.message);
-        }
-      },
-      error: (err) => {
-        this.toaster.error(err.message);
-      },
-    });
-  }
+  // public getStudentData(): void {
+  //   // this.apiservice.getStudentsData().subscribe({
+  //   //   next: (res: IStudentData) => {
+  //   //     if (res.statusCode == 200) {
+  //   //       setTimeout(() => {
+  //   //         this.isShowedData = true;
+  //   //         this.allData = res.data;
+  //   //         this.passMessage = res.message;
+  //   //         this.toaster.success('', res.message);
+  //   //       }, 1500);
+  //   //     } else {
+  //   //       this.toaster.error(res.message);
+  //   //     }
+  //   //   },
+  //   //   error: (err) => {
+  //   //     this.toaster.error(err.message);
+  //   //   },
+  //   // });
+  // }
 }

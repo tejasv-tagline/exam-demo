@@ -8,7 +8,7 @@ import { TestingFormComponent } from './testing-form/testing-form.component';
 const routes: Routes = [
   {
     path:'',
-    component:TestingFormComponent
+    component:LoginComponent
   },
   {
     path:'signup',

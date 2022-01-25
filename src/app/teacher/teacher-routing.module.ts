@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateExamComponent } from './create-exam/create-exam.component';
 import { EditExamComponent } from './edit-exam/edit-exam.component';
+import { StudentListResolver } from './Resolver/student-list.resolver';
 import { StudentDataListComponent } from './student-data-list/student-data-list.component';
 import { TeacherHomeComponent } from './teacher-home/teacher-home.component';
 import { VerifyStudentDataComponent } from './verify-student-data/verify-student-data.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   {
     path: 'studentDataList',
     component: StudentDataListComponent,
+    resolve: { studentList: StudentListResolver },
   },
   // {
   //   path: 'viewDetails',

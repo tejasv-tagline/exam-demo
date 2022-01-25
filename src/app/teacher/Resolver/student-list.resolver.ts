@@ -5,12 +5,14 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { ApiService } from 'src/app/services/api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentListResolver implements Resolve<boolean> {
+  constructor(private apiService:ApiService){}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return of(true);
+    return this.apiService.getStudentsData();
   }
 }
