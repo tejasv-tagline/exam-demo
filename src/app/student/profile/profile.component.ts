@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProfileResponse } from 'src/app/interface/common';
@@ -18,18 +19,26 @@ export class ProfileComponent implements OnInit {
   public profileId: string = '';
   public response = this.activatedRoute.snapshot.data['profileResolver'];
   public studentName!: string;
-  public updateProfileStudent={
-    name:''
-  }
+  public updateProfileStudent = {
+    name: '',
+  };
+  public myForm!: FormGroup;
+  public defaultName:string|null;
 
   constructor(
     private apiService: ApiService,
     private toaster: ToastrService,
     private activatedRoute: ActivatedRoute,
-    private router:Router
-  ) {}
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+    this.myForm=this.fb.group({
+      name:'',
+    })
+  }
 
   ngOnInit(): void {
+    this.defaultName=localStorage.getItem('studentName')
     if (this.response.statusCode == 200) {
       this.toaster.success(this.response.message);
       this.profileName = this.response.data.name;
@@ -60,20 +69,21 @@ export class ProfileComponent implements OnInit {
     //   },
     // });
   }
-  public logout(){
+  public logout() {
     localStorage.clear();
     this.router.navigate(['login']);
   }
-  public updateProfile(){
-    this.updateProfileStudent.name=this.studentName;
-      this.apiService.updateStudentProfile(this.updateProfileStudent).subscribe({
-        next:(res)=>{
-          console.log('res :>> ', res);
-          if(res.statusCode==200){
-            this.toaster.success('Relogin to check updated details',res.message);
-            this.logout();
-          }
+  public updateProfile() {
+    console.log('this.myForm.value :>> ', this.myForm.value);
+    // this.updateProfileStudent.name = this.studentName;
+    this.apiService.updateStudentProfile(this.myForm.value).subscribe({
+      next: (res) => {
+        console.log('res :>> ', res);
+        if (res.statusCode == 200) {
+          this.toaster.success('Relogin to check updated details', res.message);
+          this.logout();
         }
-      })
+      },
+    });
   }
 }

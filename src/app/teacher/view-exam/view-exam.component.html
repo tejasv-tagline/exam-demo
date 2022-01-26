@@ -40,12 +40,23 @@
                             <button type="button" class="btn btn-warning" data-bs-dismiss="modal"
                                 [routerLink]="['/editExam/'+id]">Edit Exam Details</button>
                             <button class="btn btn-danger close" data-bs-dismiss="modal" aria-hidden="true"
-                                (click)="deleteExam(id)">Delete Exam</button>
+                            (click)="deleteExam(id)" >Delete Exam</button>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <!-- <div class="modal" id="exampleModal2" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            Are you sure want to delete this exam ?
+                        </div>
+                        <div class="modal-footer">
+                            <button (click)="deleteExam(id)">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
         </ng-container>
 
     </div>

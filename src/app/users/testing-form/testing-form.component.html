@@ -1,8 +1,0 @@
-<form [formGroup]="myForm" class="m-5">
-    <div formArrayName="skills">
-        <ng-container *ngFor="let skill of myForm.get('skills')['controls']; index as i">
-                <input type="text" formControlName="{{i}}" placeholder="Enter skills">
-        </ng-container>
-        <button (click)="onAddSkills()" class="btn btn-primary">Add skill</button>
-    </div>
-</form>

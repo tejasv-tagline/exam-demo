@@ -19,19 +19,11 @@ const routes: Routes = [
     path: '',
     component: TeacherHomeComponent,
   },
-  // {
-  //   path: 'teacher/:name/:email',
-  //   component: TeacherHomeComponent,
-  // },
   {
     path: 'studentDataList',
     component: StudentDataListComponent,
     resolve: { studentList: StudentListResolver },
   },
-  // {
-  //   path: 'viewDetails',
-  //   component: ViewStudentDetailsComponent,
-  // },
   {
     path: 'viewDetails/:_id',
     component: ViewStudentDetailsComponent,

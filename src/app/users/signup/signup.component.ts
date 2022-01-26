@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
   public myForm!: FormGroup;
   public isSignedUp: boolean = false;
   public isSignedUpFailed: boolean = false;
-  public roles = ['Student', 'Teacher', 'User'];
+  public roles = ['Student', 'Teacher'];
   constructor(
     private fb: FormBuilder,
     private apiService: ApiService,
@@ -45,7 +45,7 @@ export class SignupComponent implements OnInit {
     //   },
     // });
   }
-  public navigateLogin(){
+  public navigateLogin():void{
     this.router.navigate(['/login'])
   }
   get fControl(){
