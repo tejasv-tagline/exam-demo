@@ -22,9 +22,11 @@
             </div>
 
             <div class="card-body">
-                <h5 class="card-title">Question : <input type="text" class="form-control" value="{{question.question}}">
+                <h5 class="card-title">Question : <input type="text" class="form-control mt-1"
+                        value="{{question.question}}">
                 </h5>
-                <p class="card-text">Answer : {{question.answer}}</p>
+                <p class="card-text">Answer : <input type="text" class="form-control w-25 mt-1"
+                        value="{{question.answer}}"></p>
                 <!-- <a href="#" class="btn btn-primary">{{question.options}}</a>
              -->
                 <!-- <div class="d-flex justify-content-between" >
@@ -33,7 +35,20 @@
                 <!-- <div class="d-flex justify-content-between" *ngFor="let option of question.options">
                     <p> option : {{option}}</p>
                 </div> -->
+    
+    
+                <!-- <ng-container class="d-flex justify-content-between w-100">
+                    <ng-container class="d-flex justify-content-around w-50">
+                        <span class="w-25">(a)</span><input type="text" class="form-control w-75" value="{{question.options[0]}}">
+                    </ng-container>
+                    <ng-container class="d-flex justify-content-between w-50">
+                        <span class="w-25">(b)</span><input type="text" class="form-control w-75" value="{{question.options[1]}}">
+                    </ng-container>
+                </ng-container> -->
+                
                 <div class="d-flex justify-content-between flex-wrap">
+
+                    <!-- <p class="w-50">(b){{question.options[1]}}</p> -->
                     <p class="w-50">(a){{question.options[0]}}</p>
                     <p class="w-50">(b){{question.options[1]}}</p>
                     <p class="w-50">(c){{question.options[2]}}</p>

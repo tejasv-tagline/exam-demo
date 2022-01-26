@@ -4,6 +4,7 @@ import { CreateExamComponent } from './create-exam/create-exam.component';
 import { EditExamComponent } from './edit-exam/edit-exam.component';
 import { ExamListResolver } from './Resolver/exam-list.resolver';
 import { StudentListResolver } from './Resolver/student-list.resolver';
+import { VerifiedStudentsResolver } from './Resolver/verified-students.resolver';
 import { ViewSingleExamResolver } from './Resolver/view-single-exam.resolver';
 import { ViewSingleStudentResolver } from './Resolver/view-single-student.resolver';
 import { StudentDataListComponent } from './student-data-list/student-data-list.component';
@@ -52,11 +53,12 @@ const routes: Routes = [
   {
     path: 'viewExam/:_id',
     component: ViewSingleExamDetailComponent,
-    resolve:{viewSingleExamResolver:ViewSingleExamResolver}
+    resolve: { viewSingleExamResolver: ViewSingleExamResolver },
   },
   {
     path: 'verifyStudentData',
     component: VerifyStudentDataComponent,
+    resolve: { verifiedStudentsResolver: VerifiedStudentsResolver },
   },
   {
     path: 'editExam',
@@ -65,7 +67,7 @@ const routes: Routes = [
   {
     path: 'editExam/:_id',
     component: EditExamComponent,
-    resolve:{viewSingleExamResolver:ViewSingleExamResolver}
+    resolve: { viewSingleExamResolver: ViewSingleExamResolver },
   },
   {
     path: '**',

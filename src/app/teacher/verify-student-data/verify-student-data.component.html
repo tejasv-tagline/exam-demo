@@ -1,6 +1,10 @@
 
 <div class="container mt-5" *ngIf="isDataShowed">
-    <table class="table table-bordered">
+    <div class="d-flex justify-content-between">
+        <h3>Showing {{count}} verified students !</h3>
+        <button type="button" class="btn btn-danger" routerLink="/teacher"><i class="fas fa-backward me-2"></i>Back to home</button>
+    </div>
+    <table class="table table-bordered table-hover mt-4">
         <thead>
             <tr>
                 <th scope="col">Status</th>
