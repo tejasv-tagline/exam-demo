@@ -8,6 +8,7 @@ import { UsersModule } from '../users/users.module';
 import { ExamListComponent } from './exam-list/exam-list.component';
 import { ExamPaperComponent } from './exam-paper/exam-paper.component';
 import { StudentHomeComponent } from './student-home/student-home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,6 +21,8 @@ import { StudentHomeComponent } from './student-home/student-home.component';
   imports: [
     CommonModule,
     StudentRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class StudentModule { }

@@ -1,23 +1,70 @@
-<div class="container" *ngIf="isExamShowed">
+<!-- <div class="container" *ngIf="isExamShowed">
     <div class="d-flex justify-content-between">
         <p></p>
-        <button class="btn btn-danger" routerLink="/student/viewExamList"><i class="fas fa-backward me-1"></i>Back to Exam List</button>
+        <button class="btn btn-danger" routerLink="/student/viewExamList"><i class="fas fa-backward me-1"></i>Back to
+            Exam List</button>
     </div>
     <div class="card p-3 list-group list-group-flush">
-        <div *ngFor="let question of questionList" class="list-group-item p-3">
-            <p class="text-muted custom-font">id: {{question._id}}</p>
-            <p> 
-                <!-- Question : <span *ngFor="let index of indexArray">{{index}}</span> -->
-                {{question.question}}</p>
-            <div class="d-flex justify-content-between flex-wrap">
-                <p class="w-50"><input type="radio" class="me-2" name="{{question._id}}" id="{{question.options[0]}}" value="{{question.options[0]}}">{{question.options[0]}}</p>
-                <p class="w-50"><input type="radio" class="me-2" name="{{question._id}}" id="{{question.options[1]}}" value="{{question.options[1]}}">{{question.options[1]}}</p>
-                <p class="w-50"><input type="radio" class="me-2" name="{{question._id}}" id="{{question.options[2]}}" value="{{question.options[2]}}">{{question.options[2]}}</p>
-                <p class="w-50"><input type="radio" class="me-2" name="{{question._id}}" id="{{question.options[3]}}" value="{{question.options[3]}}">{{question.options[3]}}</p>
+        <form [formGroup]="myExam">
+
+            <div *ngFor="let question of questionList" class="list-group-item p-3">
+
+                <p class="text-muted custom-font" formControlName="question">id: {{question._id}}</p>
+                <p>
+                    {{question.question}}
+                </p>
+                <div class="d-flex justify-content-between flex-wrap">
+                    <p class="w-50"><input type="radio" class="me-2" formControlName="answer" name="{{question._id}}"
+                            id="{{question.options[0]}}" value="{{question.options[0]}}">{{question.options[0]}}</p>
+                    <p class="w-50"><input type="radio" class="me-2" formControlName="answer" name="{{question._id}}"
+                            id="{{question.options[1]}}" value="{{question.options[1]}}">{{question.options[1]}}</p>
+                    <p class="w-50"><input type="radio" class="me-2" formControlName="answer" name="{{question._id}}"
+                            id="{{question.options[2]}}" value="{{question.options[2]}}">{{question.options[2]}}</p>
+                    <p class="w-50"><input type="radio" class="me-2" formControlName="answer" name="{{question._id}}"
+                            id="{{question.options[3]}}" value="{{question.options[3]}}">{{question.options[3]}}</p>
+                </div>
             </div>
-        </div>
-        <div class="mt-4 d-flex justify-content-center">
-            <button type="submit" class="mt-2 btn btn-primary w-25">Submit exam</button>
-        </div>
+            <div class="mt-4 d-flex justify-content-center">
+                <button type="submit" class="mt-2 btn btn-primary w-25" (click)="submitExamStudent()">Submit exam</button>
+            </div>
+        </form>
+    </div>
+</div> -->
+
+
+
+
+<div class="container">
+    <div class="d-flex justify-content-between mt-3 mb-4">
+        <h3>Your exam paper</h3>
+        <button class="btn btn-danger" routerLink="/student/viewExamList"><i class="fas fa-backward me-1"></i>Back to
+            Exam List</button>
+    </div>
+    <div class="card p-3 list-group list-group-flush">
+        <form (ngSubmit)="onSubmit()" [formGroup]="examForm">
+            <ng-container *ngFor="let question of questionList">
+                <p class="text-muted custom-font" formControlName="question">id: {{question._id}}</p>
+                <p>{{question.question}}</p>
+                <div class="d-flex justify-content-between flex-wrap">
+                    <p class="w-50"><input type="radio" class="me-2"  id="{{question.options[0]}}" formControlName="answer" [checked]="true" (click)="pushMe()" value="{{question.options[0]}}">{{question.options[0]}}</p>
+                    <p class="w-50"><input type="radio" class="me-2"  id="{{question.options[1]}}" formControlName="answer" value="{{question.options[1]}}">{{question.options[1]}}</p>
+                    <p class="w-50"><input type="radio" class="me-2"  id="{{question.options[2]}}" formControlName="answer" value="{{question.options[2]}}">{{question.options[2]}}</p>
+                    <p class="w-50"><input type="radio" class="me-2"  id="{{question.options[3]}}" formControlName="answer" value="{{question.options[3]}}">{{question.options[3]}}</p>
+                </div>
+            </ng-container>
+            <div class="mt-4 d-flex justify-content-center">
+                <button type="submit" class="mt-2 btn btn-primary w-25">Submit exam</button>
+            </div>
+        </form>
     </div>
 </div>
+
+<!-- <div *ngFor="let question of questionList" class="list-group-item p-3">
+    {{question._id}}
+    {{question.question}}
+    {{question.options[0]}}
+    {{question.options[1]}}
+    {{question.options[2]}}
+    {{question.options[3]}}
+
+</div> -->

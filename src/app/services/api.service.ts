@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { loginForm, SignupData } from '../interface/common';
+import { loginForm, MyExamForm, SignupData } from '../interface/common';
 @Injectable({
   providedIn: 'root',
 })
@@ -113,4 +113,12 @@ export class ApiService {
     return this.http.post('https://nodejsexamination.herokuapp.com/users/ForgotPassword',myForm)
   }
   //Forgot password api ends
+
+  //Student submit exam api starts
+  public submitExam(id:string,myExam:MyExamForm[]):Observable<any>{
+    return this.http.post(`https://nodejsexamination.herokuapp.com/student/giveExam?id=${id}`,myExam)
+  }
+  //Student submit exam api ends
 }
+
+

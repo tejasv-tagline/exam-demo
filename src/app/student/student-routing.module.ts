@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ViewAllExamResolver } from './Student Resolver/view-all-exam.resolver';
 import { ProfileResolver } from './Student Resolver/profile.resolver';
 import { StudentHomeComponent } from './student-home/student-home.component';
+import { ExamPaperResolver } from './Student Resolver/exam-paper.resolver';
 
 const routes: Routes = [
   {
@@ -30,7 +31,12 @@ const routes: Routes = [
   {
     path: 'examPaper/:_id',
     component: ExamPaperComponent,
+    resolve:{examPaperResolver:ExamPaperResolver}
   },
+  // {
+  //   path:'examPaper/:_id/:form',
+  //   component:ExamPaperComponent
+  // },
   {
     path: '**',
     redirectTo: '',

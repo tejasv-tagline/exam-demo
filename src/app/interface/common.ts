@@ -109,29 +109,35 @@ export interface VerifiedStudentsDataResponse {
 //Verified students interface ends
 
 //view students exam list interface starts
-export interface ViewAllExams{
-Result: string[],
-email: string,
-notes: string[],
-subjectName: string,
-_id: string
+export interface ViewAllExams {
+  Result: string[];
+  email: string;
+  notes: string[];
+  subjectName: string;
+  _id: string;
 }
 //view students exam list interface ends
 
 //View exam paper interface starts
-export interface viewExamData{
-  options:string[],
-  _id:string,
-  question:string
+export interface viewExamData {
+  options: string[];
+  _id: string;
+  question: string;
 }
-export interface ViewExamPaperResponse{
-  statusCode:number,
-  data:viewExamData[],
-  message:string
+export interface ViewExamPaperResponse {
+  statusCode: number;
+  data: viewExamData[];
+  message: string;
 }
+//View exam paper interface ends
 
+//Forgot password interface starts
+export interface SendData {
+  email: string;
+}
+//Forgot password interface ends
 
-//Forgot password interface
-export interface SendData{
-  "email":string
+export interface MyExamForm {
+  quesiton: string;
+  answer: string;
 }
