@@ -13,9 +13,16 @@ export class ViewStudentDetailsComponent implements OnInit {
   public name!: string;
   public email!: string;
   public id!: string;
+  public role!: string;
   // public passId!: string;
-  public studentDetails=[];
-  public studentDetailsResponse=this.activatedRoute.snapshot.data['viewSingleStudentResolver'];
+  public studentDetails = [];
+  public isResultShowed: boolean = false;
+  public heading3: boolean = false;
+  public isColseButton: boolean = false;
+  public isViewButton: boolean = true;
+  public result = [];
+  public response =
+    this.activatedRoute.snapshot.data['viewSingleStudentResolver'];
 
   constructor(
     private apiService: ApiService,
@@ -26,16 +33,34 @@ export class ViewStudentDetailsComponent implements OnInit {
   ngOnInit(): void {
     // this.passId = this.route.snapshot.params['_id'];
     // this.viewDetails();
-    if(this.studentDetailsResponse.statusCode==200){
-      this.name=this.studentDetailsResponse.data[0].name;
-      this.email=this.studentDetailsResponse.data[0].email;
-      this.id=this.studentDetailsResponse.data[0].id;
-      this.toaster.success(this.studentDetailsResponse.message);
-    }
-    else{
-      this.toaster.error(this.studentDetailsResponse.message);
+    if (this.response.statusCode == 200) {
+      this.name = this.response.data[0].name;
+      this.email = this.response.data[0].email;
+      this.id = this.response.data[0]._id;
+      this.role = this.response.data[0].role;
+      this.toaster.success(this.response.message);
+      this.result = this.response.data[0].Result;
+      console.log('this.result :>> ', this.result);
+    } else {
+      this.toaster.error(this.response.message);
     }
   }
+
+  public showData(): void {
+    if (this.response.data[0].Result.length > 0) {
+      this.isResultShowed = true;
+      this.isColseButton = true;
+      this.isViewButton=false;
+    } else {
+      this.heading3 = true;
+    }
+  }
+  public hideData(): void {
+    this.isResultShowed = false;
+    this.isColseButton=false;
+    this.isViewButton=true;
+  }
+
   // public viewDetails(): void {
   //   this.apiService.getDetails(this.passId).subscribe({
   //     next: (res) => {

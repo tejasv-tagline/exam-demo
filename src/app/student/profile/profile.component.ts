@@ -32,6 +32,9 @@ export class ProfileComponent implements OnInit {
       this.profileRole = this.response.data.role;
       this.profileId = this.response.data._id;
     }
+    else{
+      this.toaster.error(this.response.message);
+    }
     // this.apiService.getProfile().subscribe({
     //   next: (res: ProfileResponse) => {
 

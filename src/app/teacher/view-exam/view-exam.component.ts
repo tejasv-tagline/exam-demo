@@ -29,14 +29,7 @@ export class ViewExamComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if(this.allExamResponse.statusCode==200){
-      this.allExamList=this.allExamResponse.data;
-      this.isDataShowed=true;
-      this.toaster.success(this.allExamResponse.message);
-    }
-    else{
-      this.toaster.error(this.allExamResponse.message);
-    }
+    this.allExams();
     // this.apiService.viewExam().subscribe({
     //   next: (res) => {
     //     this.isDataShowed=true;
@@ -54,7 +47,16 @@ export class ViewExamComponent implements OnInit {
 
   }
 
-
+  public allExams():void{
+    if(this.allExamResponse.statusCode==200){
+      this.allExamList=this.allExamResponse.data;
+      this.isDataShowed=true;
+      this.toaster.success(this.allExamResponse.message);
+    }
+    else{
+      this.toaster.error(this.allExamResponse.message);
+    }
+  }
 
   public open(id: string): void {
     this.allExamList.find((element) => {

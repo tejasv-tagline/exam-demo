@@ -1,14 +1,46 @@
 <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
-    <div class="card p-4 text-big">
+    <div class="card p-4  text-big">
         <div class="image d-flex flex-column justify-content-center align-items-center"> <button
                 class="btn btn-secondary"> <img src="https://avatars.githubusercontent.com/u/26719151?v=4" height="100"
-                    width="100" /></button> <span class="name mt-3 fw-bold">{{name}}</span> <span
-                class="text-sm text-muted mt-1">{{id}}</span>
+                    width="100" /></button>
+            <span class="name mt-3 fw-bold">Name : {{name}}</span>
+            <span class="text-sm text-muted mt-1">Id : {{id}}</span>
             <div class="d-flex flex-row justify-content-center align-items-center gap-2"> <span
-                    class="idd1 mt-1">{{email}}</span></div>
-            <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span
-                    class="number mt-2">Student</span> </div>
-            <div class=" d-flex mt-2"> <button class="btn1 btn-dark mt-4" routerLink="/teacher/studentDataList">Close</button> </div>
+                    class="idd1 mt-1">Email :{{email}}</span>
+            </div>
+            <!-- <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span
+                    class="number mt-2">Role : {{role}}</span>
+            </div> -->
+            <table class="table table-hover table-bordered fs-6" *ngIf="isResultShowed">
+                <thead>
+                  <tr class="text-center">
+                    <th scope="col">Subject</th>
+                    <th scope="col">Rank</th>
+                    <th scope="col">Score</th>
+                    <th scope="col">Result Status</th>
+                    <th scope="col">Exam id</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let res of result" [ngClass]="{'table-success':res.score>5,'table-danger':res.score<6}">
+                    <td>{{res.subjectName}}</td>
+                    <td>{{res.rank}}</td>
+                    <td>{{res.score}}</td>
+                    <td>{{res.resultStatus}}</td>
+                    <td>{{res._id}}</td>
+                  </tr>
+                </tbody>
+            </table>
+            <div class=" d-flex justify-content-between"> 
+                <button class="btn btn-danger m-3" routerLink="/teacher/studentDataList">Close Profile</button>
+                <button class="btn btn-primary m-3" (click)="showData()" *ngIf="isViewButton">View Results</button>
+                <button class="btn btn-warning m-3" (click)="hideData()" *ngIf="isColseButton">Close Results</button>
+            </div>
+            <ng-container *ngIf="heading3" class="mb-0">
+                <h4 class="text-danger">No exam given by {{name}} </h4>
+            </ng-container>
+            
         </div>
     </div>
 </div>
+
