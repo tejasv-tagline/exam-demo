@@ -119,6 +119,11 @@ export class ApiService {
     return this.http.post(`https://nodejsexamination.herokuapp.com/student/giveExam?id=${id}`,myExam)
   }
   //Student submit exam api ends
+  
+  //Update student profile api starts
+  public updateStudentProfile(name:any):Observable<any>{
+    return this.http.put('https://nodejsexamination.herokuapp.com/student/studentProfile',name)
+  }
+  //Update student profile api ends
+  
 }
-
-

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProfileResponse } from 'src/app/interface/common';
 import { ApiService } from 'src/app/services/api.service';
@@ -17,11 +17,16 @@ export class ProfileComponent implements OnInit {
   public profileRole: string = '';
   public profileId: string = '';
   public response = this.activatedRoute.snapshot.data['profileResolver'];
+  public studentName!: string;
+  public updateProfileStudent={
+    name:''
+  }
 
   constructor(
     private apiService: ApiService,
     private toaster: ToastrService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -31,10 +36,11 @@ export class ProfileComponent implements OnInit {
       this.profileEmail = this.response.data.email;
       this.profileRole = this.response.data.role;
       this.profileId = this.response.data._id;
-    }
-    else{
+      this.studentName = this.profileName;
+    } else {
       this.toaster.error(this.response.message);
     }
+
     // this.apiService.getProfile().subscribe({
     //   next: (res: ProfileResponse) => {
 
@@ -53,5 +59,21 @@ export class ProfileComponent implements OnInit {
     //     console.log('err :>> ', err);
     //   },
     // });
+  }
+  public logout(){
+    localStorage.clear();
+    this.router.navigate(['login']);
+  }
+  public updateProfile(){
+    this.updateProfileStudent.name=this.studentName;
+      this.apiService.updateStudentProfile(this.updateProfileStudent).subscribe({
+        next:(res)=>{
+          console.log('res :>> ', res);
+          if(res.statusCode==200){
+            this.toaster.success('Relogin to check updated details',res.message);
+            this.logout();
+          }
+        }
+      })
   }
 }

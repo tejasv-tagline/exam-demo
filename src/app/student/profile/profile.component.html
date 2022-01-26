@@ -13,10 +13,67 @@
             <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span
                     class="number mt-2">{{profileRole}}</span> </div>
             <div class=" d-flex mt-2 justify-content-between">
-                <button class="btn1 btn-dark mt-4 me-2">Edit Profile</button>
-                <button class="btn btn-danger mt-4 ms-2" routerLink="/student"><i class="fas fa-backward me-1"></i>Back to home</button>
+                <button class="btn1 btn-dark mt-4 me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit
+                    Profile</button>
+                <button class="btn btn-danger mt-4 ms-2" routerLink="/student"><i class="fas fa-backward me-1"></i>Back
+                    to home</button>
             </div>
 
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="exampleModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title fs-2">{{profileName}}'s Details</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group list-group-flush">
+                    <li class="row m-1 list-group-item d-flex justify-content-between">
+                        <div class="col-sm-2 m-0 p-0">
+                            <label for="studentName" class="mt-2">Name :</label>
+                        </div>
+                        <div class="col-sm-10 m-0 p-0">
+                            <input type="text" class="form-control" [(ngModel)]="studentName">
+                        </div>
+                    </li>
+                    <li class="row m-1 list-group-item d-flex justify-content-between">
+                        <div class="col-sm-2 m-0 p-0">
+                            <label for="studentName">Role :</label>
+                        </div>
+                        <div class="col-sm-10 m-0 p-0">
+                            {{profileRole}}
+                        </div>
+                    </li>
+                    <li class="row m-1 list-group-item d-flex justify-content-between">
+                        <div class="col-sm-2 m-0 p-0">
+                            <label for="studentName">Email :</label>
+                        </div>
+                        <div class="col-sm-10 m-0 p-0">
+                            {{profileEmail}}
+                        </div>
+                    </li>
+                    <li class="row m-1 list-group-item d-flex justify-content-between">
+                        <div class="col-sm-2 m-0 p-0">
+                            <label for="studentName">Id :</label>
+                        </div>
+                        <div class="col-sm-10 m-0 p-0">
+                            {{profileId}}
+                        </div>
+                    </li>
+                    
+                    <!-- <li class="list-group-item">Role   :{{profileRole}}</li>
+                    <li class="list-group-item">Email :{{profileEmail}}</li>
+                    <li class="list-group-item">Id :{{profileId}}</li> -->
+                </ul>
+            </div>
+            <div class="modal-footer">
+            <p class="text-sm text-danger mt-3">As per now you can only update name</p>
+                <button (click)="updateProfile()" class="btn btn-warning m-3 mb-0 align-items-end" data-bs-dismiss="modal">Update Profile</button>
+            </div>
         </div>
     </div>
 </div>
