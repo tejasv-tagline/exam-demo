@@ -15,6 +15,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './headers/header/header.component';
 import { JwtInterceptor } from './interceptor/jwt.interceptor';
+import { AuthGuard } from './AuthGuard/auth.guard';
+import { AuthService } from './AuthGuard/auth.service';
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
@@ -29,11 +31,11 @@ import { JwtInterceptor } from './interceptor/jwt.interceptor';
     ToastrModule.forRoot(),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    AuthGuard,
+    AuthService,
   ],
-  exports:[
-    HeaderComponent
-  ],
+  exports: [HeaderComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

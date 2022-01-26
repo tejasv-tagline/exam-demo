@@ -1,5 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../AuthGuard/auth.guard';
 import { CreateExamComponent } from './create-exam/create-exam.component';
 import { EditExamComponent } from './edit-exam/edit-exam.component';
 import { ExamListResolver } from './Resolver/exam-list.resolver';
@@ -21,6 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'studentDataList',
+    canDeactivate:[AuthGuard],
     component: StudentDataListComponent,
     resolve: { studentList: StudentListResolver },
   },

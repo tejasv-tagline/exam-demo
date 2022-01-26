@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { canComponentDeactivate } from 'src/app/AuthGuard/auth.guard';
 import { IStudentData, showAllData } from 'src/app/interface/common';
 import { ApiService } from 'src/app/services/api.service';
 @Component({
@@ -9,7 +10,7 @@ import { ApiService } from 'src/app/services/api.service';
   templateUrl: './student-data-list.component.html',
   styleUrls: ['./student-data-list.component.scss'],
 })
-export class StudentDataListComponent implements OnInit {
+export class StudentDataListComponent implements OnInit,canComponentDeactivate {
   public isShowedData: boolean = false;
   public passMessage!: string;
   public ShowData: any;
@@ -27,6 +28,9 @@ export class StudentDataListComponent implements OnInit {
     this.token = localStorage.getItem('teacherToken');
     this.teacherName = localStorage.getItem('teacherName');
     this.dataResponse = this.activatedRoute.snapshot.data['studentList'];
+  }
+  public confirm():boolean {
+    return window.confirm('Are you sure want to leave the page');
   }
 
   ngOnInit(): void {
