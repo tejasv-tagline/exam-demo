@@ -20,7 +20,9 @@ export class StudentDataListComponent implements OnInit,canComponentDeactivate {
   public teacherName: string | null;
   public dataResponse: IStudentData;
   public count:number;
-  public activeStudents=[];
+  public p:number=1;
+  public total:number=30; 
+
 
   constructor(
     private apiservice: ApiService,

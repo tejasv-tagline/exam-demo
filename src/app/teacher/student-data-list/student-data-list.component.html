@@ -16,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let data of allData">
+                <tr *ngFor="let data of allData | paginate: { itemsPerPage: total, currentPage: p}">
                     <td [ngClass]="{'table-success': data.status==='Active','table-warning':data.status==='Pending'}">
                         {{data.status}}
                     </td>
@@ -27,6 +27,9 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="text-center">
+        <pagination-controls (pageChange)="p = $event" class=" mt-5"></pagination-controls>
     </div>
 
 </div>

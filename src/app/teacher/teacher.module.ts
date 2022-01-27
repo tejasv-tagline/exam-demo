@@ -13,6 +13,7 @@ import { TeacherHomeComponent } from './teacher-home/teacher-home.component';
 import { UsersRoutingModule } from '../users/users-routing.module';
 import { VerifyStudentDataComponent } from './verify-student-data/verify-student-data.component';
 import { EditExamComponent } from './edit-exam/edit-exam.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { EditExamComponent } from './edit-exam/edit-exam.component';
     UsersModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule
   ],
   exports:[StudentDataListComponent]
 })
