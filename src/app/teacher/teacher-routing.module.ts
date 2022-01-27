@@ -63,6 +63,10 @@ const routes: Routes = [
     component: EditExamComponent,
     resolve: { viewSingleExamResolver: ViewSingleExamResolver },
   },
+  // {
+  //   path:'changePassword',
+  //   loadChildren: () => import('../users/users.module').then(m => m.UsersModule)
+  // },
   {
     path: '**',
     redirectTo: '',

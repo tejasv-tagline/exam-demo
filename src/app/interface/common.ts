@@ -47,7 +47,7 @@ export interface LoginData {
 export interface LoginDataResponse {
   data: LoginData;
   message: string;
-  statusCode: string;
+  statusCode: number;
 }
 
 // Login Component Interfaces ends

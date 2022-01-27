@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
   public onLogin(): void {
     this.apiService.getUserData(this.myLoginForm.value).subscribe({
       next: (res: LoginDataResponse) => {
-        if (res) {
+        if (res.statusCode == 200) {
           this.apiService.isLoggedOut = true;
           if (res?.data.role == 'student') {
             this.token = localStorage.setItem('token', res.data.token);
