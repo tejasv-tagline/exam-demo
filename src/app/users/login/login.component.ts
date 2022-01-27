@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         'tejasvteacher.tagline@gmail.com',
         [Validators.required, Validators.email],
       ],
-      password: ['Tejash@123', [Validators.required]],
+      password: ['123456', [Validators.required]],
     });
   }
 
@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
     this.apiService.getUserData(this.myLoginForm.value).subscribe({
       next: (res: LoginDataResponse) => {
         if (res.statusCode == 200) {
+          this.toaster.success(res.message);
           this.apiService.isLoggedOut = true;
           if (res?.data.role == 'student') {
             this.token = localStorage.setItem('token', res.data.token);
@@ -75,6 +76,8 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['teacher']);
             this.toaster.success(res.message);
           }
+        }else{
+          this.toaster.error(res.message);
         }
       },
       error: (err) => {

@@ -4,6 +4,7 @@ import { AuthGuard } from '../AuthGuard/auth.guard';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
+import { NewPasswordComponent } from './new-password/new-password.component';
 import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
@@ -28,6 +29,11 @@ const routes: Routes = [
     path: 'changePassword',
     component: ChangePasswordComponent,
   },
+  {
+    canActivate:[AuthGuard],
+    path:'resetPassword',
+    component:NewPasswordComponent
+  }
 ];
 
 @NgModule({

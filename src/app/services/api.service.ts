@@ -127,9 +127,20 @@ export class ApiService {
   //Update student profile api ends
   
 
-  //change password student api starts
+  //change password  api starts
+
+  public newPasswordTokenCheck():Observable<any>{
+    return this.http.get('https://nodejsexamination.herokuapp.com/users/newPassword');
+  }
+
    public changeStudentPassword(token:void|string,myForm:any):Observable<any>{
      return this.http.post(`https://nodejsexamination.herokuapp.com/users/ForgotPassword/Verify?token=${token}`,myForm)
    }
-  //change password student api ends
+  //change password  api ends
+
+  //New password api starts here 
+    public newPassword(myForm:any):Observable<any>{
+      return this.http.post('https://nodejsexamination.herokuapp.com/users/ResetPassword',myForm)
+    }
+  //New password api ends here 
 }
