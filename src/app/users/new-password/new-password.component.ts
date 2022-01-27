@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -15,7 +16,8 @@ export class NewPasswordComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private apiService: ApiService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private router:Router
   ) {
     this.myForm = this.fb.group({
       oldPassword: ['',[Validators.required]],
@@ -43,5 +45,12 @@ export class NewPasswordComponent implements OnInit {
       }
     })
   }
-
+  public naviateBack(){
+    if(localStorage.getItem('teacherName')){
+      this.router.navigate(['teacher']);
+    }
+    else{
+      this.router.navigate(['student']);
+    }
+  }
 }

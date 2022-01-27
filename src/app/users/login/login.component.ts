@@ -61,7 +61,6 @@ export class LoginComponent implements OnInit {
               'studentEmail',
               res.data.email
             );
-            this.toaster.success(res.message);
             this.router.navigate(['student']);
           } else {
             this.token = localStorage.setItem('token', res.data.token);
@@ -74,7 +73,6 @@ export class LoginComponent implements OnInit {
               res.data.email
             );
             this.router.navigate(['teacher']);
-            this.toaster.success(res.message);
           }
         }else{
           this.toaster.error(res.message);

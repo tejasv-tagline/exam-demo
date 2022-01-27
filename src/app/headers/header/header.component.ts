@@ -11,10 +11,10 @@ export class HeaderComponent implements OnInit {
   // public isLoggedIn=this.apiService.isLoggedOut;
   // public getToken:any=localStorage.getItem('token');
   public tokenA: boolean = true;
-  public teacherName: string | null;
+  public name: string | null;
 
   constructor(private router: Router, private apiService: ApiService) {
-    this.teacherName=localStorage.getItem('teacherName')?localStorage.getItem('teacherName'):localStorage.getItem('studentName');
+    this.name=localStorage.getItem('teacherName')?localStorage.getItem('teacherName'):localStorage.getItem('studentName');
   }
 
   ngOnInit(): void {
