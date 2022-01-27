@@ -46,7 +46,7 @@
                 <p class="text-muted custom-font" formControlName="question">id: {{question._id}}</p>
                 <p>{{question.question}}</p>
                 <div class="d-flex justify-content-between flex-wrap">
-                    <p class="w-50"><input type="radio" class="me-2"  id="{{question.options[0]}}" formControlName="answer" [checked]="true" (click)="pushMe()" value="{{question.options[0]}}">{{question.options[0]}}</p>
+                    <p class="w-50"><input type="radio" class="me-2"  id="{{question.options[0]}}" formControlName="answer" value="{{question.options[0]}}">{{question.options[0]}}</p>
                     <p class="w-50"><input type="radio" class="me-2"  id="{{question.options[1]}}" formControlName="answer" value="{{question.options[1]}}">{{question.options[1]}}</p>
                     <p class="w-50"><input type="radio" class="me-2"  id="{{question.options[2]}}" formControlName="answer" value="{{question.options[2]}}">{{question.options[2]}}</p>
                     <p class="w-50"><input type="radio" class="me-2"  id="{{question.options[3]}}" formControlName="answer" value="{{question.options[3]}}">{{question.options[3]}}</p>

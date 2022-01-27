@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { viewExamData, ViewExamPaperResponse } from 'src/app/interface/common';
@@ -18,7 +18,7 @@ export class ExamPaperComponent implements OnInit {
   public isExamShowed: boolean = false;
   public examForm!: FormGroup;
   public myExam!: FormGroup;
-  public response = this.activatedRoute.snapshot.data['examPaperResolver'];
+  public response: ViewExamPaperResponse;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,13 +26,15 @@ export class ExamPaperComponent implements OnInit {
     private toaster: ToastrService,
     private fb: FormBuilder
   ) {
+    this.response = this.activatedRoute.snapshot.data['examPaperResolver'];
+    console.log('this.response :>> ', this.response);
     this.capturedId = this.activatedRoute.snapshot.params['_id'];
     //  console.log('this.capturedId :>> ', this.capturedId);
 
-    this.examForm=this.fb.group({
-      question:'',
-      answer:''
-    })
+    this.examForm = this.fb.group({
+      question: new FormArray([]),
+      answer: new FormArray([]),
+    });
     // this.myExam = this.fb.group({
     //   question: '',
     //   answer: '',
@@ -44,6 +46,7 @@ export class ExamPaperComponent implements OnInit {
       this.isExamShowed = true;
       this.toaster.success(this.response.message);
       this.questionList = this.response.data;
+      console.log('this.questionList :>> ', this.questionList);
     }
 
     // this.apiService.viewExamById(this.capturedId).subscribe({
@@ -62,19 +65,22 @@ export class ExamPaperComponent implements OnInit {
     // });
   }
 
-  public onSubmit(): void {
-          this.apiService.submitExam(this.capturedId,this.examForm.value).subscribe({
-        next:(res)=>{
-          console.log('res :>> ', res);
-        }
-      })
+  // public onSubmit(): void {
+  //         this.apiService.submitExam(this.capturedId,this.examForm.value).subscribe({
+  //       next:(res)=>{
+  //         console.log('res :>> ', res);
+  //       }
+  //     })
+  // }
+  public onSubmit() {
+    console.log('this.myExam :>> ', this.examForm.value);
   }
-  public submitExamStudent():void{
+  public submitExamStudent(): void {
     console.log('this.myExam.value :>> ', this.myExam.value);
-      // this.apiService.submitExam(this.capturedId,this.myExam.value).subscribe({
-      //   next:(res)=>{
-      //     console.log('res :>> ', res);
-      //   }
-      // })
+    // this.apiService.submitExam(this.capturedId,this.myExam.value).subscribe({
+    //   next:(res)=>{
+    //     console.log('res :>> ', res);
+    //   }
+    // })
   }
 }

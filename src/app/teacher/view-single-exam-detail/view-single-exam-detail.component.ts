@@ -15,20 +15,20 @@ export class ViewSingleExamDetailComponent implements OnInit {
   // public questionNumbers: number[] = [];
   public options = ['A', 'B', 'C', 'D'];
   public showExamName: string | null = '';
-  public isPageLoaded:boolean=false;
-  public response=this.activatedRoute.snapshot.data['viewSingleExamResolver'];
+  public isPageLoaded: boolean = false;
+  public response = this.activatedRoute.snapshot.data['viewSingleExamResolver'];
   // public isLoading:boolean=true;
 
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
     private toaster: ToastrService,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     // this.passId = this.route.snapshot.params['_id'];
-    this.showExamName=localStorage.getItem('examName');
+    this.showExamName = localStorage.getItem('examName');
     this.viewDetails();
   }
 
@@ -43,32 +43,29 @@ export class ViewSingleExamDetailComponent implements OnInit {
     //     }
     //   },
     // });
-    if(this.response.statusCode==200){
+    if (this.response.statusCode == 200) {
       // this.isLoading=false;
 
-      this.allQuestionBunch=this.response.data.questions;
-      this.isPageLoaded=true;
-      console.log('Answer is here---->>',this.allQuestionBunch);
+      this.allQuestionBunch = this.response.data.questions;
+      this.isPageLoaded = true;
+      console.log('Answer is here---->>', this.allQuestionBunch);
       this.toaster.success(this.response.message);
-    }
-    else{
+    } else {
       this.toaster.error(this.response.message);
     }
   }
-
-
 
   // load() : void {
   //   this.isLoading = true;
   //   setTimeout( () => this.isLoading = false, 2000 );
   // }
 
-	// async wait(ms: number): Promise<void> {
-	// 	return new Promise<void>( resolve => setTimeout( resolve, ms) );
-	// }
+  // async wait(ms: number): Promise<void> {
+  // 	return new Promise<void>( resolve => setTimeout( resolve, ms) );
+  // }
 
-	// start() {
+  // start() {
   //   this.isLoading = true;
-	// 	this.wait(2000).then( () => this.isLoading = false );
-	// }
+  // 	this.wait(2000).then( () => this.isLoading = false );
+  // }
 }

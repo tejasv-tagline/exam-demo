@@ -23,6 +23,9 @@ export class ExamListComponent implements OnInit {
       this.toaster.success(this.response.message);
       this.studentExamList=this.response.data;
     }
+    else{
+      this.toaster.error(this.response.message);
+    }
     // this.apiService.viewAllExams().subscribe({
     //   next: (res) => {
     //     if(res.statusCode==200){
