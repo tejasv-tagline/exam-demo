@@ -27,7 +27,7 @@ export class ExamPaperComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.response = this.activatedRoute.snapshot.data['examPaperResolver'];
-    console.log('this.response :>> ', this.response);
+    // console.log('this.response :>> ', this.response);
     this.capturedId = this.activatedRoute.snapshot.params['_id'];
     //  console.log('this.capturedId :>> ', this.capturedId);
 
@@ -46,7 +46,7 @@ export class ExamPaperComponent implements OnInit {
       this.isExamShowed = true;
       this.toaster.success(this.response.message);
       this.questionList = this.response.data;
-      console.log('this.questionList :>> ', this.questionList);
+      // console.log('this.questionList :>> ', this.questionList);
     }
 
     // this.apiService.viewExamById(this.capturedId).subscribe({
@@ -73,10 +73,10 @@ export class ExamPaperComponent implements OnInit {
   //     })
   // }
   public onSubmit() {
-    console.log('this.myExam :>> ', this.examForm.value);
+    // console.log('this.myExam :>> ', this.examForm.value);
   }
   public submitExamStudent(): void {
-    console.log('this.myExam.value :>> ', this.myExam.value);
+    // console.log('this.myExam.value :>> ', this.myExam.value);
     // this.apiService.submitExam(this.capturedId,this.myExam.value).subscribe({
     //   next:(res)=>{
     //     console.log('res :>> ', res);

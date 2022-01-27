@@ -80,7 +80,7 @@ export class EditExamComponent implements OnInit {
             this.toaster.success(res.message);
             this.router.navigate(['viewExam']);
           }
-          console.log('editTeacherExam res :>> ', res);
+          // console.log('editTeacherExam res :>> ', res);
         },
       });
   }

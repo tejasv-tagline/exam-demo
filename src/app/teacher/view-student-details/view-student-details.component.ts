@@ -33,7 +33,7 @@ export class ViewStudentDetailsComponent implements OnInit {
   ) 
     {
       this.response = this.activatedRoute.snapshot.data['viewSingleStudentResolver'];
-      console.log('this.response---- :>> ', this.response);
+      // console.log('this.response---- :>> ', this.response);
     }
 
   ngOnInit(): void {
@@ -41,14 +41,14 @@ export class ViewStudentDetailsComponent implements OnInit {
     // this.viewDetails();
     if (this.response.statusCode == 200) {
       this.profileData=this.response.data[0];
-      console.log('this.profileData :>> ', this.profileData);
+      // console.log('this.profileData :>> ', this.profileData);
       // this.name = this.response.data[0].name;
       // this.email = this.response.data[0].email;
       // this.id = this.response.data[0]._id;
       // this.role = this.response.data[0].role;
       this.toaster.success(this.response.message);
       this.studentResult = this.response.data[0].Result;
-      console.log('this.studentResult++++---- :>> ', this.studentResult);
+      // console.log('this.studentResult++++---- :>> ', this.studentResult);
 
       // console.log('this.result :>> ', this.result);
     } else {

@@ -60,11 +60,11 @@ export class SignupComponent implements OnInit {
     //   password: '123456789',
     //   role: 'student',
     // };
-    console.log('this.myForm.value :>> ', this.myForm.value);
+    // console.log('this.myForm.value :>> ', this.myForm.value);
     this.apiService.setUsername(this.myForm.value).subscribe({
       next: (res:SignupDataResponse) => {
         if(res.statusCode==200){
-        console.log('post res :>> ', res);
+        // console.log('post res :>> ', res);
         this.toaster.success(res.message)
         this.router.navigate(['login']);
         // if(res.server)

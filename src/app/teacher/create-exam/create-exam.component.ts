@@ -84,7 +84,7 @@ export class CreateExamComponent implements OnInit {
   }
 
   public createExam() {
-    console.log('this.myForm.value :>> ', this.myForm.value);
+    // console.log('this.myForm.value :>> ', this.myForm.value);
     this.apiService.createExam(this.myForm.value).subscribe({
       next: (res) => {
         if (res.statusCode == 200) {

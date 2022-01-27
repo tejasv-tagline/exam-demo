@@ -38,10 +38,10 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['login']);
   }
   public updateProfile() {
-    console.log('this.myForm.value :>> ', this.myForm.value);
+    // console.log('this.myForm.value :>> ', this.myForm.value);
     this.apiService.updateStudentProfile(this.myForm.value).subscribe({
       next: (res) => {
-        console.log('res :>> ', res);
+        // console.log('res :>> ', res);
         if (res.statusCode == 200) {
           this.toaster.success('Relogin to check updated details', res.message);
           this.logout();

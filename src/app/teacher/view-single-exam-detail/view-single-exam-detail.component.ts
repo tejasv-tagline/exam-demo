@@ -22,7 +22,7 @@ export class ViewSingleExamDetailComponent implements OnInit {
     private toaster: ToastrService,
     private activatedRoute: ActivatedRoute
   ) {
-    console.log('this.responsesssssss :>> ', this.response);
+    // console.log('this.responsesssssss :>> ', this.response);
   }
 
   ngOnInit(): void {
@@ -47,7 +47,7 @@ export class ViewSingleExamDetailComponent implements OnInit {
 
       this.allQuestionBunch = this.response.data.questions;
       this.isPageLoaded = true;
-      console.log('Answer is here---->>', this.allQuestionBunch);
+      // console.log('Answer is here---->>', this.allQuestionBunch);
       this.toaster.success(this.response.message);
     } else {
       this.toaster.error(this.response.message);

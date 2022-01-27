@@ -23,7 +23,7 @@ export class VerifyStudentDataComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('this.response :>> ', this.response);
+    // console.log('this.response :>> ', this.response);
     if(this.response.statusCode==200){
       this.isDataShowed=true;
       this.toaster.success(this.response.message);

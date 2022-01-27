@@ -31,7 +31,7 @@ export class ViewExamComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('this.response :>> ', this.response);
+    // console.log('this.response :>> ', this.response);
     this.allExams();
     // this.apiService.viewExam().subscribe({
     //   next: (res) => {
@@ -53,7 +53,7 @@ export class ViewExamComponent implements OnInit {
   public allExams():void{
     if(this.response.statusCode==200){
       this.allExamList=this.response.data;
-      console.log('this.allExamList :>> ', this.allExamList);
+      // console.log('this.allExamList :>> ', this.allExamList);
       this.isDataShowed=true;
       this.toaster.success(this.response.message);
     }
@@ -78,7 +78,7 @@ export class ViewExamComponent implements OnInit {
   public deleteExam(id:string){
     this.apiService.deleteExam(id).subscribe({
       next:(res)=>{
-        console.log('res :>> ', res);
+        // console.log('res :>> ', res);
         this.toaster.success(res.message);
         window.location.reload();
       }
