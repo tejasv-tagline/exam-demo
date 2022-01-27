@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { ViewAllExam } from 'src/app/interface/common';
+import { ViewAllExam, ViewAllExamResponse } from 'src/app/interface/common';
 import { ApiService } from 'src/app/services/api.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,16 +19,19 @@ export class ViewExamComponent implements OnInit {
   public allExamList: ViewAllExam[] = [];
   public closeResult!: string;
   public isDataShowed:boolean=false;
-  public allExamResponse=this.activatedRoute.snapshot.data['examList']
+  public response:ViewAllExamResponse;
 
   constructor(
     private apiService: ApiService,
     private toaster: ToastrService,
     private router:Router,
     private activatedRoute:ActivatedRoute
-  ) {}
+  ) {
+    this.response=this.activatedRoute.snapshot.data['examList'];
+  }
 
   ngOnInit(): void {
+    console.log('this.response :>> ', this.response);
     this.allExams();
     // this.apiService.viewExam().subscribe({
     //   next: (res) => {
@@ -48,13 +51,14 @@ export class ViewExamComponent implements OnInit {
   }
 
   public allExams():void{
-    if(this.allExamResponse.statusCode==200){
-      this.allExamList=this.allExamResponse.data;
+    if(this.response.statusCode==200){
+      this.allExamList=this.response.data;
+      console.log('this.allExamList :>> ', this.allExamList);
       this.isDataShowed=true;
-      this.toaster.success(this.allExamResponse.message);
+      this.toaster.success(this.response.message);
     }
     else{
-      this.toaster.error(this.allExamResponse.message);
+      this.toaster.error(this.response.message);
     }
   }
 

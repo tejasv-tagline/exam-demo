@@ -13,9 +13,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class EditExamComponent implements OnInit {
   public passId!: string;
   public allQuestionBunch: AllQuestionBunch[] = [];
-  // public questionNumbers: number[] = [];
-  public options = ['A', 'B', 'C', 'D'];
-  public showExamName!: string | null | void;
+  public showExamName!: string | null ;
   public isPageLoaded: boolean = false;
   public myForm!: FormGroup;
   public staticUpdateObject = {};
@@ -25,7 +23,7 @@ export class EditExamComponent implements OnInit {
     'Exam is going to be taken on 25th january',
   ];
   public isLoading:boolean=true;
-  public response=this.activatedRoute.snapshot.data['viewSingleExamResolver']
+  public response=this.activatedRoute.snapshot.data['viewSingleExamResolver'];
 
   constructor(
     private apiService: ApiService,

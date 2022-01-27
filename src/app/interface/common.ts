@@ -61,12 +61,57 @@ export interface ViewAllExam {
   _id: string;
 }
 
+export interface ViewAllExamResponse {
+  statusCode: number;
+  message: string;
+  data: ViewAllExam[];
+}
+
 export interface TeacherLinks {
   name: string;
   email: string;
   button: string;
   routerPath: string;
 }
+
+export interface ViewSingleExamQuestions {
+  options: string[];
+  question: string;
+  answer: string;
+}
+export interface viewSingleExamData {
+  options: string[];
+  question: string;
+  answer: string;
+}
+export interface viewSingleExamResponse {
+  statusCode: number;
+  message: string;
+  data: viewSingleExamData[];
+}
+
+
+export interface ResultArray{
+  rank:number,
+  resultStatus:string,
+  score:number,
+  studentId:string,
+  subjectName:string,
+  __v:number,
+  _id:string
+}
+export interface ViewSingleStudentData{
+  email:string,
+  name:string,
+  _id:string,
+  Result:ResultArray[]
+}
+export interface ViewSingleStudentResponse{
+  statusCode:number,
+  message:string,
+  data:ViewSingleStudentData[]
+}
+
 
 // Teacher Module interfaces ends
 
@@ -104,7 +149,6 @@ export interface VerifiedStudentsDataResponse {
   count: number;
   data: VerifiedStudentsData[];
   message: string;
-  messageCode: number;
 }
 //Verified students interface ends
 

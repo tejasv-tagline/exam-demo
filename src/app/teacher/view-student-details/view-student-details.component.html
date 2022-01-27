@@ -3,10 +3,10 @@
         <div class="image d-flex flex-column justify-content-center align-items-center"> <button
                 class="btn btn-secondary"> <img src="https://avatars.githubusercontent.com/u/26719151?v=4" height="100"
                     width="100" /></button>
-            <span class="name mt-3 fw-bold">Name : {{name}}</span>
-            <span class="text-sm text-muted mt-1">Id : {{id}}</span>
+            <span class="name mt-3 fw-bold">Name : {{profileData.name}}</span>
+            <span class="text-sm text-muted mt-1">Id : {{profileData._id}}</span>
             <div class="d-flex flex-row justify-content-center align-items-center gap-2"> <span
-                    class="idd1 mt-1">Email :{{email}}</span>
+                    class="idd1 mt-1">Email :{{profileData.email}}</span>
             </div>
             <!-- <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span
                     class="number mt-2">Role : {{role}}</span>
@@ -22,7 +22,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let res of result" [ngClass]="{'table-success':res.score>5,'table-danger':res.score<6}">
+                  <tr *ngFor="let res of studentResult" [ngClass]="{'table-success':res.score>5,'table-danger':res.score<6}">
                     <td>{{res.subjectName}}</td>
                     <td>{{res.rank}}</td>
                     <td>{{res.score}}</td>

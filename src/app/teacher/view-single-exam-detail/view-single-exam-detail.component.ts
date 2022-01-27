@@ -12,19 +12,18 @@ import { ApiService } from 'src/app/services/api.service';
 export class ViewSingleExamDetailComponent implements OnInit {
   public passId!: string;
   public allQuestionBunch: AllQuestionBunch[] = [];
-  // public questionNumbers: number[] = [];
-  public options = ['A', 'B', 'C', 'D'];
   public showExamName: string | null = '';
   public isPageLoaded: boolean = false;
   public response = this.activatedRoute.snapshot.data['viewSingleExamResolver'];
-  // public isLoading:boolean=true;
 
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
     private toaster: ToastrService,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    console.log('this.responsesssssss :>> ', this.response);
+  }
 
   ngOnInit(): void {
     // this.passId = this.route.snapshot.params['_id'];
