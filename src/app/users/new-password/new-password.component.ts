@@ -42,6 +42,12 @@ export class NewPasswordComponent implements OnInit {
           this.toaster.success(res.message);
           console.log('res :>> ', res);
         }
+        else{
+          this.toaster.error(res.message);
+        }
+      },
+      error:(err)=>{
+        this.toaster.error(err);
       }
     })
   }

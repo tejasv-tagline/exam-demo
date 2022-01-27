@@ -19,6 +19,8 @@ export class StudentDataListComponent implements OnInit,canComponentDeactivate {
   public showed = new Observable();
   public teacherName: string | null;
   public dataResponse: IStudentData;
+  public count:number;
+  public activeStudents=[];
 
   constructor(
     private apiservice: ApiService,
@@ -34,7 +36,6 @@ export class StudentDataListComponent implements OnInit,canComponentDeactivate {
   }
 
   ngOnInit(): void {
-    // console.log(
     //   'localStorage.getItem(`teacherName`) :>> ',
     //   typeof localStorage.getItem('teacherName')
     // );
@@ -42,6 +43,11 @@ export class StudentDataListComponent implements OnInit,canComponentDeactivate {
 
     if (this.dataResponse.statusCode == 200) {
       this.allData = this.dataResponse.data;
+      // this.count=this.dataResponse.data.length;
+      // for(let i=0;i<this.count;i++){
+      //   // if()
+      //   this.activeStudents.push(this.dataResponse.data[i].status=='Active');
+      // }
       this.isShowedData = true;
       this.toaster.success(this.dataResponse.message);
     } else {

@@ -17,6 +17,7 @@ import { HeaderComponent } from './headers/header/header.component';
 import { JwtInterceptor } from './interceptor/jwt.interceptor';
 import { AuthGuard } from './AuthGuard/auth.guard';
 import { AuthService } from './AuthGuard/auth.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
@@ -29,6 +30,7 @@ import { AuthService } from './AuthGuard/auth.service';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

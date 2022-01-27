@@ -22,7 +22,7 @@ export class CreateExamComponent implements OnInit {
   public note: any = '';
   public isShowButton: boolean = false;
   public fifteenQuestionsDone: boolean = false;
-  public notes=[];
+  public notes = [];
 
   constructor(
     private fb: FormBuilder,
@@ -31,10 +31,10 @@ export class CreateExamComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.myForm =this.fb.group({
+    this.myForm = this.fb.group({
       subjectName: new FormControl('This is testing exam'),
       questions: new FormArray([]),
-      notes: [['tejash','arvind']],
+      notes: [['tejash', 'arvind']],
       // notes: new FormControl(['Tejash', 'Arvind']),
     });
 
@@ -72,7 +72,7 @@ export class CreateExamComponent implements OnInit {
     this.questions = this.myForm.get('questions') as FormArray;
     this.questions.push(this.createQuestion());
     // console.log('this.myForm.length :>> ', this.questions.length);
-    if (this.questions.length > 14 && this.questions.length<16) {
+    if (this.questions.length == 15) {
       this.fifteenQuestionsDone = true;
     }
   }
@@ -80,6 +80,9 @@ export class CreateExamComponent implements OnInit {
     // this.questions=this.myForm.get('questions') as FormArray
     // if(i>0){
     this.questions.removeAt(i);
+    if (this.questions.length > 15) {
+      this.fifteenQuestionsDone = false;
+    }
     // }
   }
 
@@ -89,7 +92,7 @@ export class CreateExamComponent implements OnInit {
       next: (res) => {
         if (res.statusCode == 200) {
           this.isShowButton = true;
-          this.toaster.success(res.data.subjectName,res.message);
+          this.toaster.success(res.data.subjectName, res.message);
           // console.log('res :>> ', res);
         } else {
           this.toaster.error(res.message);
