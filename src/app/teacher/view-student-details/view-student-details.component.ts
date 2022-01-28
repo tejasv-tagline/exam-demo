@@ -2,7 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ResultArray, ViewSingleStudentData, ViewSingleStudentResponse } from 'src/app/interface/common';
+import {
+  ResultArray,
+  ViewSingleStudentData,
+  ViewSingleStudentResponse,
+} from 'src/app/interface/common';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -21,34 +25,32 @@ export class ViewStudentDetailsComponent implements OnInit {
   public heading3: boolean = false;
   public isColseButton: boolean = false;
   public isViewButton: boolean = true;
-  public result = [];
-  public profileData:ViewSingleStudentData;
-  public studentResult:ResultArray[]
+  public resultAnswer = [];
+  public profileData: ViewSingleStudentData;
+  public studentResult: ResultArray[];
   public response: ViewSingleStudentResponse;
+  public isModalMessage = false;
 
   constructor(
     private apiService: ApiService,
     private activatedRoute: ActivatedRoute,
     private toaster: ToastrService
-  ) 
-    {
-      this.response = this.activatedRoute.snapshot.data['viewSingleStudentResolver'];
-      // console.log('this.response---- :>> ', this.response);
-    }
+  ) {
+    this.response =
+      this.activatedRoute.snapshot.data['viewSingleStudentResolver'];
+    // console.log('this.response---- :>> ', this.response);
+  }
 
   ngOnInit(): void {
     // this.passId = this.route.snapshot.params['_id'];
     // this.viewDetails();
     if (this.response.statusCode == 200) {
-      this.profileData=this.response.data[0];
-      // console.log('this.profileData :>> ', this.profileData);
-      // this.name = this.response.data[0].name;
-      // this.email = this.response.data[0].email;
-      // this.id = this.response.data[0]._id;
-      // this.role = this.response.data[0].role;
+      this.profileData = this.response.data[0];
       this.toaster.success(this.response.message);
       this.studentResult = this.response.data[0].Result;
       // console.log('this.studentResult++++---- :>> ', this.studentResult);
+      // console.log('this.studentResult :>> ', this.studentResult);
+      // this.result=this.studentResult;
 
       // console.log('this.result :>> ', this.result);
     } else {
@@ -69,6 +71,15 @@ export class ViewStudentDetailsComponent implements OnInit {
     this.isResultShowed = false;
     this.isColseButton = false;
     this.isViewButton = true;
+  }
+
+  public openModal(index: number) {
+    if (this.studentResult[index].studentAnswer) {
+      this.resultAnswer = this.studentResult[index].studentAnswer;
+    }
+    else{
+      this.isModalMessage = true;
+    }
   }
 
   // public viewDetails(): void {

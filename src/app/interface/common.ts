@@ -90,11 +90,15 @@ export interface viewSingleExamResponse {
   data: viewSingleExamData[];
 }
 
-
+export interface StudentAnswer{
+  question:string,
+  answer:string
+}
 export interface ResultArray{
   rank:number,
   resultStatus:string,
   score:number,
+  studentAnswer:StudentAnswer[]
   studentId:string,
   subjectName:string,
   __v:number,
