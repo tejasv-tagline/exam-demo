@@ -29,7 +29,8 @@ const routes: Routes = [
   {
     path: 'viewDetails/:_id',
     component: ViewStudentDetailsComponent,
-    resolve: { viewSingleStudentResolver: ViewSingleStudentResolver },
+    resolve: { viewSingleExamResolver: ViewSingleExamResolver,viewSingleStudentResolver: ViewSingleStudentResolver},
+
   },
   {
     path: 'createExam',

@@ -30,6 +30,7 @@ export class ViewStudentDetailsComponent implements OnInit {
   public studentResult: ResultArray[];
   public response: ViewSingleStudentResponse;
   public isModalMessage = false;
+  public questionNameResponse;
 
   constructor(
     private apiService: ApiService,
@@ -48,6 +49,7 @@ export class ViewStudentDetailsComponent implements OnInit {
       this.profileData = this.response.data[0];
       this.toaster.success(this.response.message);
       this.studentResult = this.response.data[0].Result;
+      // console.log('this.studentResult :>> ', this.studentResult);
       // console.log('this.studentResult++++---- :>> ', this.studentResult);
       // console.log('this.studentResult :>> ', this.studentResult);
       // this.result=this.studentResult;
@@ -73,7 +75,9 @@ export class ViewStudentDetailsComponent implements OnInit {
     this.isViewButton = true;
   }
 
-  public openModal(index: number) {
+  public openModal(index: number,resId:string):void {
+    // this.getQuestionsName(resId);
+    // console.log('resId :>> ', resId);
     if (this.studentResult[index].studentAnswer) {
       this.resultAnswer = this.studentResult[index].studentAnswer;
     }
@@ -82,6 +86,17 @@ export class ViewStudentDetailsComponent implements OnInit {
     }
   }
 
+  // public getQuestionsName(id:string):void{
+  //   console.log('api id :>> ', id);
+  //   this.apiService.viewSingleExam('61e79c916f41a80015781a72').subscribe({
+  //     next:(res)=>{
+  //       console.log('res :>> ', res);
+  //     }
+  //   })
+  //   // this.questionNameResponse=this.activatedRoute.snapshot.data['viewSingleExamResolver'];
+  //   // console.log(this.questionNameResponse);
+
+  // }
   // public viewDetails(): void {
   //   this.apiService.getDetails(this.passId).subscribe({
   //     next: (res) => {

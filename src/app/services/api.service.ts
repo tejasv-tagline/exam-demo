@@ -84,63 +84,89 @@ export class ApiService {
   //Verify student data for exam api ends
 
   //view all exams for students starts
-  public viewAllExams():Observable<any>{
-    return this.http.get('https://nodejsexamination.herokuapp.com/student/studentExam');
+  public viewAllExams(): Observable<any> {
+    return this.http.get(
+      'https://nodejsexamination.herokuapp.com/student/studentExam'
+    );
   }
   //view all exams for students ends
 
-
-
   //View exam by id starts
-  public viewExamById(id:string):Observable<any>{
-    return this.http.get(`https://nodejsexamination.herokuapp.com/student/examPaper?id=${id}`);
+  public viewExamById(id: string): Observable<any> {
+    return this.http.get(
+      `https://nodejsexamination.herokuapp.com/student/examPaper?id=${id}`
+    );
   }
   //View exam by id ends
 
   //Edit exam api starts
-  public editTeacherExam(id:string,myForm:any):Observable<any>{
-    return this.http.put(`https://nodejsexamination.herokuapp.com/dashboard/Teachers/editExam?id=${id}`,myForm)
+  public editTeacherExam(id: string, myForm: any): Observable<any> {
+    return this.http.put(
+      `https://nodejsexamination.herokuapp.com/dashboard/Teachers/editExam?id=${id}`,
+      myForm
+    );
   }
   //Edit exam api ends
 
   //Delete exam api starts
-  public deleteExam(id:string):Observable<any>{
-    return this.http.delete(`https://nodejsexamination.herokuapp.com/dashboard/Teachers/deleteExam?id=${id}`)
+  public deleteExam(id: string): Observable<any> {
+    return this.http.delete(
+      `https://nodejsexamination.herokuapp.com/dashboard/Teachers/deleteExam?id=${id}`
+    );
   }
 
   //Forgot password api starts
-  public forgotPassword(myForm:any):Observable<any>{
-    return this.http.post('https://nodejsexamination.herokuapp.com/users/ForgotPassword',myForm)
+  public forgotPassword(myForm: any): Observable<any> {
+    return this.http.post(
+      'https://nodejsexamination.herokuapp.com/users/ForgotPassword',
+      myForm
+    );
   }
   //Forgot password api ends
 
   //Student submit exam api starts
-  public submitExam(id:string,myExam:MyExamForm[]):Observable<any>{
-    return this.http.post(`https://nodejsexamination.herokuapp.com/student/giveExam?id=${id}`,myExam)
+  public submitExam(id: string, myExam: MyExamForm[]): Observable<any> {
+    return this.http.post(
+      `https://nodejsexamination.herokuapp.com/student/giveExam?id=${id}`,
+      myExam
+    );
   }
   //Student submit exam api ends
-  
+
   //Update student profile api starts
-  public updateStudentProfile(name:any):Observable<any>{
-    return this.http.put('https://nodejsexamination.herokuapp.com/student/studentProfile',name)
+  public updateStudentProfile(name: any): Observable<any> {
+    return this.http.put(
+      'https://nodejsexamination.herokuapp.com/student/studentProfile',
+      name
+    );
   }
   //Update student profile api ends
-  
 
   //change password  api starts
 
-  public newPasswordTokenCheck():Observable<any>{
-    return this.http.get('https://nodejsexamination.herokuapp.com/users/newPassword');
+  public newPasswordTokenCheck(): Observable<any> {
+    return this.http.get(
+      'https://nodejsexamination.herokuapp.com/users/newPassword'
+    );
   }
 
-   public changeStudentPassword(token:void|string,myForm:any):Observable<any>{
-     return this.http.post(`https://nodejsexamination.herokuapp.com/users/ForgotPassword/Verify?token=${token}`,myForm)
-   }
+  public changeStudentPassword(
+    token: void | string,
+    myForm: any
+  ): Observable<any> {
+    return this.http.post(
+      `https://nodejsexamination.herokuapp.com/users/ForgotPassword/Verify?token=${token}`,
+      myForm
+    );
+  }
   //change password  api ends
 
-  //New password api starts here 
-    public newPassword(myForm:any):Observable<any>{
-      return this.http.post('https://nodejsexamination.herokuapp.com/users/ResetPassword',myForm)
-    }
-  //New password api ends here 
+  //New password api starts here
+  public newPassword(myForm: any): Observable<any> {
+    return this.http.post(
+      'https://nodejsexamination.herokuapp.com/users/ResetPassword',
+      myForm
+    );
+  }
+  //New password api ends here
 }
