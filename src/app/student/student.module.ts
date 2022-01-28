@@ -9,6 +9,7 @@ import { ExamListComponent } from './exam-list/exam-list.component';
 import { ExamPaperComponent } from './exam-paper/exam-paper.component';
 import { StudentHomeComponent } from './student-home/student-home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TestingComponent } from './testing/testing.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProfileComponent,
     ExamListComponent,
     ExamPaperComponent,
-    StudentHomeComponent
+    StudentHomeComponent,
+    TestingComponent
   ],
   imports: [
     CommonModule,
