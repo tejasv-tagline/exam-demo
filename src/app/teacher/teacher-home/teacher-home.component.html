@@ -1,15 +1,37 @@
 <div class="container">
-        <div class="card m-10">
-            <div class="card-body">
-                <h5 class="card-title">Welcome , {{teacherName}}</h5>
-                <p class="card-text text-muted">{{teacherEmail}}</p>
-                <div class="d-flex justify-content-between">
+<div class="text-center mt-5">
+    <h5 class="card-title">Welcome , {{teacherName}}</h5>
+    <p class="card-text text-muted">{{teacherEmail}}</p>
+</div>
+    <div class="m-10">
+            <div class="d-flex justify-content-around flex-wrap">
+            <div *ngFor="let item of teacherHome">
+                <div class="card">
+                    <img class="card-img-top" [src]="item.image" alt="BackGround Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.title}}</h5>
+                        <p class="card-text">{{item.text}}</p>
+                        <a href="#" class="btn" ngClass="{{item.class}}" routerLink="{{item.routerLink}}">{{item.button}}</a>
+                    </div>
+                </div>
+                <!-- <div class="d-flex justify-content-between">
                     <a href="#" class="btn btn-primary m-2" routerLink="studentDataList">All students data</a>
                     <a href="#" class="btn btn-primary m-2" routerLink="createExam">Create exam</a>
                     <a href="#" class="btn btn-primary m-2" routerLink="viewExam">View exams</a>
                     <a href="#" class="btn btn-primary m-2" routerLink="verifyStudentData">Verified students</a>
                     <a href="#" class="btn btn-warning m-2" routerLink="/resetPassword">Reset Password</a>
-                </div>
+                </div> -->
             </div>
         </div>
+    </div>
 </div>
+
+<!-- <div class="card custom-card-w-image">
+    <img class="card-img-top" src="assets/bg1.jpg" alt="BackGround Image">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        <a href="#" class="btn btn-outline-light">Go somewhere</a>
+    </div>
+</div> -->
