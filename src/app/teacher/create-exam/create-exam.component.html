@@ -1,42 +1,64 @@
 <div class="container">
-    <!-- <div class="col-sm-2"></div> -->
-    <div class="d-flex justify-content-center mt-5">
-        <form [formGroup]="myForm" (ngSubmit)="createExam()" class="c-form">
+
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div class="d-flex justify-content-between mt-5">
             <h2>Create exam</h2>
-                <input type="text" formControlName="subjectName" class="form-control w-50"
-                    placeholder="Enter Subject Name" >
-                <div class="d-flex justify-content-between mt-3">
-                    <button class="btn btn-primary form-control me-5" type="submit" [disabled]="!fifteenQuestionsDone">Create exam</button>
-                    <button class="btn btn-danger form-control" [ngClass]="{'me-5':isShowButton,'ms-5':!isShowButton}" routerLink="/teacher" type="button">Back to home</button>
-                    <button class="btn btn-success form-control ms-1" type="button" *ngIf="isShowButton" routerLink="/viewExam">View all exams</button>
-                </div>
-            <div formArrayName="questions" *ngFor="let question of myForm.get('questions')['controls']; let i=index;"
-                class="mt-5 card p-2">
-                <div [formGroupName]="i">
-                    <label>Question : {{i+1}}</label>
-                    <input type="text" formControlName="question" class="form-control" placeholder="Enter question">
-                    <input type="text" formControlName="answer" class="form-control mt-2" placeholder="Enter answer">
-                    <label class="mt-3">Options</label>
-                    <div class="d-flex justify-content-around flex-wrap mb-3">
-                        <input type="text" class
-                        ="form-control w-50 mt-2" placeholder="A">
-                        <input type="text" class="form-control w-50 mt-2" placeholder="B">
-                        <input type="text" class="form-control w-50 mt-2" placeholder="C">
-                        <input type="text" class="form-control w-50 mt-2" placeholder="D">
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <button class="btn btn-danger" type="button" (click)="removeQuestion(i)">Remove question</button>
-                    <button class="btn btn-primary" (click)="addQuestion()" type="button">Add Question</button>
-                </div>
-
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-danger me-2" routerLink="/teacher"><i class="fas fa-backward me-2"></i>Back to
+                    home</button>
+                <button type="submit" class="btn btn-success" [disabled]="!isformFormatted">Create Exam</button>
             </div>
-            <!-- <div class="form-group mt-3 d-flex justify-content-between">
-                <input type="text" placeholder="notes" formControlName="notes" [(ngModel)]="notesAnswers" class="form-control w-75 me-1">
-                <button type="button" class="btn form-control w-25 btn-primary ms-3" (click)="addNote()">Add note</button>
-            </div> -->
+        </div>
+        <div class="text-danger mt-5 d-flex justify-content-end">
+            Question count : {{formLength}} 
+        </div>
+        <div class="form-group mt-1 mb-5">
+            <p>
+                <input type="text" formControlName="subjectName" placeholder="Subject name" class="form-control">
+            </p>
+        </div>
+        <div formArrayName="questions" *ngFor="let quest of myForm.get('questions')['controls'];let i=index" class="mt-3 c-card p-2">
+            <ng-container [formGroupName]="i" >
+                <div class="form-group">
+                    <p>
+                        <input type="text" name="question" formControlName="question" class="form-control"
+                            placeholder="Enter question {{i+1}}">
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p>
+                        <input type="text" name="answer" formControlName="answer" class="form-control"
+                            placeholder="Enter answer">
+                    </p>
+                </div>
+            
+                <div formGroupName="options" class="d-flex justify-content-between flex-wrap p-1">
+                        <input type="text" class="w-50 mt-2 form-control" placeholder="Option A" formControlName="option1">
+                        <input type="text" class="w-50 mt-2 form-control" placeholder="Option B" formControlName="option2">
+                        <input type="text" class="w-50 mt-2 form-control" placeholder="Option C" formControlName="option3">
+                        <input type="text" class="w-50 mt-2 form-control" placeholder="Option D" formControlName="option4">
+                </div>
 
-        </form>
-    </div>
-    <!-- <div class="col-sm-2"></div> -->
+            </ng-container>
+
+            <div class="d-flex justify-content-between mt-4 mb-3">
+                <button type="button" class="btn btn-danger" (click)="removeQuestion(i)"><i class="fas fa-minus me-2"></i>Remove Question</button>
+                <button type="button" class="btn btn-primary" (click)="addQuestion()"><i class="fas fa-plus me-2"></i>Add Question</button>
+            </div>
+            <!-- <hr> -->
+        </div>
+
+        <ng-container formArrayName="notes" *ngFor="let note of myForm.get('notes')['controls']; let i=index">
+            <p>
+                <input type="text" [formControlName]="i" class="mt-4 form-control" name="note-c"
+                    placeholder="Enter note {{i+1}}">
+            </p>
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-danger" (click)="removeNote(i)"><i class="fas fa-minus me-2"></i>Remove this note</button>
+                <button type="button" class="btn btn-primary" (click)="addNote()"><i class="fas fa-plus me-2"></i>Add more note</button>
+            </div>
+        </ng-container>
+
+    </form>
 </div>
+

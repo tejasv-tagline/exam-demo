@@ -28,4 +28,13 @@ export class HeaderComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['login']);
   }
+
+  public navigateHome():void{
+    if(localStorage.getItem('teacherName')){
+      this.router.navigate(['/teacher'])
+    }
+    else{
+      this.router.navigate(['/student'])
+    }
+  }
 }

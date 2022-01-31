@@ -1,1 +1,110 @@
-<p>testing works!</p>
+<!-- <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+
+    <p>
+        <label >First Name</label>
+        <input type="text" formControlName="firstName">
+    </p>
+    <p>
+        <label >Last Name</label>
+        <input type="text" formControlName="lastName">
+    </p>
+    <ng-container formGroupName="address">
+        <p>
+            <label >Street</label>
+            <input type="text" formControlName="street">
+        </p>
+        <p>
+            <label >Area</label>
+            <input type="text" formControlName="area">
+        </p>
+        <p>
+            <label >Pin</label>
+            <input type="text" formControlName="pin">
+        </p>
+    </ng-container>
+    <ng-container formArrayName="mobile" *ngFor="let mob of myForm.get('mobile')['controls'];let i=index">
+        <p>
+            <label >Mobile number</label>
+            <input type="text" [formControlName]="i">
+        </p>
+        <p>
+            <button class="btn btn-primary" type="button" (click)="addMobile()">Add mobile</button>
+        </p>
+    </ng-container>
+    
+
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <p class="mt-4">{{myForm.value | json  }}</p>
+</form> -->
+
+<div class="container">
+
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div class="d-flex justify-content-between mt-5">
+            <h2>Create exam</h2>
+            <button type="submit" class="btn btn-success" [disabled]="!myForm.valid">Create Exam</button>
+        </div>
+        <div class="form-group mt-4">
+            <p>
+                <!-- <label>Subject Name</label> -->
+                <input type="text" formControlName="subjectName" placeholder="Subject name" class="form-control">
+            </p>
+        </div>
+        <div formArrayName="questions" *ngFor="let quest of myForm.get('questions')['controls'];let i=index">
+            <ng-container [formGroupName]="i">
+                <div class="form-group">
+                    <p>
+                        <!-- <label>Question{{i+1}}</label> -->
+                        <input type="text" name="question" formControlName="question" class="form-control"
+                            placeholder="Enter question {{i+1}}">
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p>
+                        <!-- <label>answer</label> -->
+                        <input type="text" name="answer" formControlName="answer" class="form-control"
+                            placeholder="Enter answer">
+                    </p>
+                </div>
+                <!-- <div class="form-group" formArrayName="options" *ngFor="let option of myForm.get('options')['controls'];let i=index">
+                    <ng-container class="d-flex justify-content-between">
+                        <input type="text" [formControlName]="i" class="form-control">
+
+                    </ng-container>
+                </div>
+                <button type="button" class="btn-sm btn btn-primary" (click)="addOption()">Add option</button> -->
+
+
+                <!-- <ng-container formArrayName="options" *ngFor="let option of myForm.get('options')['controls'];let i=index">
+                    <div [formGroupName]="i">
+                        <ng-container class="d-flex justify-content-between flex-wrap">
+                            <input type="text" [formControlName]="i">
+                            <input type="text" [formControlName]="i+1">
+                            <input type="text" [formControlName]="i+2">
+                            <input type="text" [formControlName]="i+3">
+                        </ng-container>
+                    </div>
+                </ng-container> -->
+                <!-- <button class="btnbtn-primary" (click)="addOptions()"></button> -->
+
+            </ng-container>
+            
+        </div>
+        <ng-container class="d-flex justify-content-between">
+            <button type="button" class="btn btn-primary" (click)="addQuestion()">Add Question</button>
+            <button type="button" class="btn btn-danger" (click)="removeQuestion(1)">Remove Question</button>
+        </ng-container>
+        <ng-container formArrayName="notes" *ngFor="let note of myForm.get('notes')['controls'];let i=index">
+            <p>
+                <!-- <label>Notes:</label> -->
+                <input type="text" [formControlName]="i" class="mt-4 form-control" placeholder="Enter note {{i+1}}">
+            </p>
+        </ng-container>
+        <button type="button" class="btn btn-primary" (click)="addNote()">Add more note</button>
+
+    </form>
+</div>
+
+{{myForm.value | json}}

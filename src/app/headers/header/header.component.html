@@ -11,8 +11,7 @@
 
         <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
           <li class="nav-item ms-3" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-            <a class="nav-link" aria-current="page" routerLink="/" routerLinkActive="true"
-              [routerLinkActiveOptions]="{exact:true}">Home</a>
+            <a class="nav-link" aria-current="page" (click)="navigateHome()">Home</a>
           </li>
         </ul>
         <div class="nav-right">
