@@ -1,18 +1,25 @@
-.card{
-  width: 300px;
-  margin-top: 3rem;
-  height:300px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+.x-card {
+  min-width: 700px;
+}
+.m-10 {
+  margin: 6rem;
 }
 
-.card img {
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
-.card .card-body {
-  margin-top: 100px;
-  color: white;
-  position: absolute;
-}
+// .card{
+//   width: 300px;
+//   margin-top: 3rem;
+//   height:300px;
+//   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+// }
+
+// .card img {
+//   height: 100%;
+//   width: 100%;
+//   position: relative;
+// }
+// .card .card-body {
+//   margin-top: 100px;
+//   color: white;
+//   position: absolute;
+// }
