@@ -52,6 +52,7 @@ export class NewPasswordComponent implements OnInit {
       },
       error:(err)=>{
         this.toaster.error(err);
+        this.spinner.hide();
       }
     })
   }

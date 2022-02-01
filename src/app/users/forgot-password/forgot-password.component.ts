@@ -55,6 +55,8 @@ export class ForgotPasswordComponent implements OnInit {
       },
       error: (err) => {
         this.toaster.error(err.error.error);
+        this.spinner.hide();
+
       },
     });
   }

@@ -70,6 +70,7 @@ export class ChangePasswordComponent implements OnInit {
         },
         error: (err) => {
           this.toaster.error(err.message);
+          this.spinner.hide();
         },
       });
   }

@@ -80,6 +80,7 @@ export class SignupComponent implements OnInit {
         // this.isSignedUpFailed = true;
         this.toaster.error(err);
         this.isSignedUpFailed = err.message;
+        this.spinner.hide();
       },
     });
   }

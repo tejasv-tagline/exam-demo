@@ -10,8 +10,9 @@ import { ApiService } from 'src/app/services/api.service';
 export class HeaderComponent implements OnInit {
   // public isLoggedIn=this.apiService.isLoggedOut;
   // public getToken:any=localStorage.getItem('token');
-  public tokenA: boolean = true;
+  public tokenA: boolean = false;
   public name: string | null;
+  public tokenNotPresent:boolean=false;
 
   constructor(private router: Router, private apiService: ApiService) {
     this.name=localStorage.getItem('teacherName')?localStorage.getItem('teacherName'):localStorage.getItem('studentName');
@@ -19,14 +20,17 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem('token')) {
-      this.tokenA = false;
+      this.tokenA = true;
+    }else{
+      this.tokenNotPresent=true;
     }
   }
 
   public logOutUser() {
     this.tokenA = false;
+    this.tokenNotPresent=true;
     localStorage.clear();
-    this.router.navigate(['login']);
+    this.router.navigate(['/login']);
   }
 
   public navigateHome():void{
