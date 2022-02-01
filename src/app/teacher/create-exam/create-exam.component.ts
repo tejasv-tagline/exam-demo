@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { toUnicode } from 'punycode';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -24,16 +25,20 @@ export class CreateExamComponent implements OnInit {
   public options: FormGroup;
   public extraArray = [];
   public optionsAll = [];
-  public isformFormatted:boolean=false;
-  public formLength:number;
+  public isformFormatted: boolean = false;
+  public isCreateExamHide: boolean = false;
+  public formLength: number;
+  public counter: number = 0;
 
-  constructor(private fb: FormBuilder, private apiService: ApiService,private toaster:ToastrService) {
+  constructor(
+    private fb: FormBuilder,
+    private apiService: ApiService,
+    private toaster: ToastrService
+  ) {
     this.myForm = this.fb.group({
-      subjectName: [null,[Validators.required]],
+      subjectName: ['null', [Validators.required]],
       questions: this.fb.array([]),
-      notes: this.fb.array([
-        new FormControl(null, Validators.required),
-      ]),
+      notes: this.fb.array([new FormControl('null', Validators.required)]),
     });
     // this.noteControl.valueChanges.subscribe((value) => console.log('value :>> ', value))
     console.log('this.myForm :>> ', this.myForm.value);
@@ -76,13 +81,13 @@ export class CreateExamComponent implements OnInit {
 
   public defauldControls() {
     return this.fb.group({
-      question: [null,[Validators.required]],
-      answer: [null,[Validators.required]],
+      question: ['null', [Validators.required]],
+      answer: ['null', [Validators.required]],
       options: this.fb.group({
-        option1: [null,[Validators.required]],
-        option2: [null,[Validators.required]],
-        option3: [null,[Validators.required]],
-        option4: [null,[Validators.required]],
+        option1: ['null', [Validators.required]],
+        option2: ['null', [Validators.required]],
+        option3: ['null', [Validators.required]],
+        option4: ['null', [Validators.required]],
         // new FormControl(null),
         // new FormControl(null),
         // new FormControl(null),
@@ -100,31 +105,47 @@ export class CreateExamComponent implements OnInit {
   // }
 
   public addQuestion() {
-    this.formMobile.push(this.defauldControls());
-    // console.log('myForm.get(`options`)[`controls`] :>> ');
-    // console.log('this. :>> ', this.formMobile);
-    this.formLength=this.myForm.value.questions.length
-    if(this.formLength > 14){
-      this.isformFormatted=true;
+    this.generateCounter('add');
+    this.formLength = this.myForm.value.questions.length;
+    // console.log('this.formLength :>> ', this.formLength);
+    if (this.formLength < 15) {
+      console.log('this.formLength :>> ', this.formLength);
+      this.formMobile.push(this.defauldControls());
+    } else {
+      window.alert('You can add maximum 15 questions');
     }
-    // for(let i=0;i<this.myForm.value.questions.length;i++){
-    //   this.optionsAll.push(data.questions[i].options.option1,data.questions[i].options.option2,data.questions[i].options.option3,data.questions[i].options.option4)
-    //   console.log('optionsALl :>> ', this.optionsAll);
-    //   console.log('data-->',data.questions[i].options.option1);
-    //   console.log('data-->',data.questions[i].options.option2);
-    //   console.log('data-->',data.questions[i].options.option3);
-    //   console.log('data-->',data.questions[i].options.option4);
-    //   data.questions[i].options.option1;
-    // console.log('object :>> ',  data.map(({options})=>{options}));
+    if (this.formLength > 13) {
+      this.isformFormatted = true;
+    }
+  }
+  public generateCounter(param: string): void {
+    if (this.counter < 15 && param === 'add') {
+      // if (param === 'add') {
+      this.counter = this.counter + 1;
+    } 
+    if(param==='remove') {
+      this.counter = this.counter - 1;
+    }
     // }
   }
+  // for(let i=0;i<this.myForm.value.questions.length;i++){
+  //   this.optionsAll.push(data.questions[i].options.option1,data.questions[i].options.option2,data.questions[i].options.option3,data.questions[i].options.option4)
+  //   console.log('optionsALl :>> ', this.optionsAll);
+  //   console.log('data-->',data.questions[i].options.option1);
+  //   console.log('data-->',data.questions[i].options.option2);
+  //   console.log('data-->',data.questions[i].options.option3);
+  //   console.log('data-->',data.questions[i].options.option4);
+  //   data.questions[i].options.option1;
+  // console.log('object :>> ',  data.map(({options})=>{options}));
+  // }
 
   public removeQuestion(i: number) {
+    this.generateCounter('remove');
     this.formMobile.removeAt(i);
   }
 
-  public removeNote(i:number){
-    const notesRemove=this.myForm.get('notes') as FormArray;
+  public removeNote(i: number) {
+    const notesRemove = this.myForm.get('notes') as FormArray;
     notesRemove.removeAt(i);
   }
 
@@ -141,12 +162,12 @@ export class CreateExamComponent implements OnInit {
       const dummyElement: any = {};
       finalElement.question = element.question;
       finalElement.answer = element.answer;
-      finalElement.options=[];
+      finalElement.options = [];
       dummyElement.options = [];
       dummyElement.options.push(Object.values(element.options));
       console.log('finalElement.options :>> ', finalElement.options);
-      dummyElement.options.forEach(element => {
-          finalElement.options=element;
+      dummyElement.options.forEach((element) => {
+        finalElement.options = element;
       });
       finalQuestions.push(finalElement);
     });
@@ -155,21 +176,20 @@ export class CreateExamComponent implements OnInit {
 
     console.log('data :>> ', data);
 
-
     this.apiService.createExam(data).subscribe({
-      next:(res)=>{
+      next: (res) => {
         console.log('res :>> ', res);
-        if(res.statusCode==200){
+        if (res.statusCode == 200) {
+          this.isCreateExamHide = true;
           this.toaster.success(res.message);
-        }
-        else{
+        } else {
           this.toaster.error(res.message);
         }
       },
-      error:(err)=>{
-          this.toaster.error(err.message)
-      }
-    })
+      error: (err) => {
+        this.toaster.error(err.message);
+      },
+    });
 
     //   for (let value of Object.values(this.extraArray)) {
     //     this.optionsAll.push(value);
