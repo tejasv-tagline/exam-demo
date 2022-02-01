@@ -14,6 +14,7 @@ import { UsersRoutingModule } from '../users/users-routing.module';
 import { VerifyStudentDataComponent } from './verify-student-data/verify-student-data.component';
 import { EditExamComponent } from './edit-exam/edit-exam.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { TestingTeacherComponent } from './testing-teacher/testing-teacher.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     TeacherHomeComponent,
     VerifyStudentDataComponent,
     EditExamComponent,
+    TestingTeacherComponent,
   ],
   imports: [
     CommonModule,
