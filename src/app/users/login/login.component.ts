@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { LoginDataResponse, LoginData } from 'src/app/interface/common';
 import { ApiService } from 'src/app/services/api.service';
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private apiService: ApiService,
     private toaster: ToastrService,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) {
     this.myLoginForm = this.fb.group({
       email: [
@@ -46,9 +48,12 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/signup']);
   }
   public onLogin(): void {
+    this.spinner.show();
     this.apiService.getUserData(this.myLoginForm.value).subscribe({
       next: (res: LoginDataResponse) => {
         if (res.statusCode == 200) {
+          this.spinner.hide();
+
           this.toaster.success(res.message);
           this.apiService.isLoggedOut = true;
           if (res?.data.role == 'student') {
@@ -74,7 +79,7 @@ export class LoginComponent implements OnInit {
             );
             this.router.navigate(['teacher']);
           }
-        }else{
+        } else {
           this.toaster.error(res.message);
         }
       },

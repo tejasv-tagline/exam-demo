@@ -1,1 +1,47 @@
-<p>testing-teacher works!</p>
+<form [formGroup]="myForm" class="m-5">
+    <input type="text" class="form-control" formControlName="firstName" placeholder="First name">
+    <div class="text-center">
+        <button (click)="updateDetails()" class="btn btn-primary mt-5">Update details</button>
+    </div>
+    <div class="form-group mt-3" formArrayName="hobbies" *ngFor="let hobby of myForm.get('hobbies')['controls'];let i=index">
+        <div class="d-flex justify-content-between">
+            <input type="text" [formControlName]="i" class="form-control me-3 h-50" placeholder="enter hobby">
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-danger h-50" (click)="removeHobby(i)">- Remove this Hobby</button>
+                <button class="btn btn-primary ms-3 h-50" (click)="addNewHobby()">+ Add Hobby</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group" formGroupName="address">
+        {{streetArray.value| json}}
+        <div class="d-flex justify-content-between" formArrayName="streetArrayControls" *ngFor="let item of streetArrayControls; let i=index">
+            <input type="text" [formControlName]="i" class="form-control me-3 h-50" placeholder="enter address line {{i+1}}">
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-danger h-50" (click)="removeAddress(i)">- Remove this line</button>
+                <button class="btn btn-primary ms-3 h-50" (click)="addNewAddress()">+ Add new line</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+{{myForm.value | json}}
+<!-- 
+<div *ngFor="let question of allQuestionBunch;let i =index">
+    <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
+        <div class="card bg-light mt-5 p-3">
+            Question {{i+1}}
+            <div class="d-flex justify-content-between">
+                <p class="me-2 mt-4">Question </p>
+                <input class="form-control mt-2" type="text" value="{{question.question}}" placeholder="Quesiton {{i+1}}">
+            </div>
+            <div class="d-flex justify-content-between">
+                <p class="me-2 mt-4">Answer </p>
+                <input class="form-control ms-2 mt-2" type="text" value="{{question.answer}}" placeholder="Answer">
+            </div>
+            <input class="form-control mt-2" type="text" value="{{question.options[0]}}" placeholder="option A">
+            <input class="form-control mt-2" type="text" value="{{question.options[1]}}" placeholder="option B">
+            <input class="form-control mt-2" type="text" value="{{question.options[2]}}" placeholder="option C">
+            <input class="form-control mt-2" type="text" value="{{question.options[3]}}" placeholder="option D">
+        </div>
+    </form>
+</div> -->

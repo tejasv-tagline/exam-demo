@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -17,7 +18,8 @@ export class NewPasswordComponent implements OnInit {
     private fb: FormBuilder,
     private apiService: ApiService,
     private toaster: ToastrService,
-    private router:Router
+    private router:Router,
+    private spinner:NgxSpinnerService
   ) {
     this.myForm = this.fb.group({
       oldPassword: ['',[Validators.required]],
@@ -35,9 +37,11 @@ export class NewPasswordComponent implements OnInit {
   }
 
   public onSubmit(): void {
+    this.spinner.show();
     console.log('this.myForm.value :>> ', this.myForm.value);
     this.apiService.newPassword(this.myForm.value).subscribe({
       next:(res)=>{
+        this.spinner.hide();
         if(res.statusCode==200){
           this.toaster.success(res.message);
           console.log('res :>> ', res);

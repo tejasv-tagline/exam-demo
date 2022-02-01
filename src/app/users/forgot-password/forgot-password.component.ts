@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { SendData } from 'src/app/interface/common';
 import { ApiService } from 'src/app/services/api.service';
@@ -22,7 +23,8 @@ export class ForgotPasswordComponent implements OnInit {
     private apiService: ApiService,
     private toaster: ToastrService,
     private router: Router,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private spinner:NgxSpinnerService
   ) {
     this.myForm=this.fb.group({
       email:['',[Validators.required,Validators.email]]
@@ -38,10 +40,12 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   public sendMail():void {
+    this.spinner.show();
     // console.log('this.sendData :>> ', this.sendData);
     // console.log('this.myFrom.value :>> ', this.myForm.value);
     this.apiService.forgotPassword(this.myForm.value).subscribe({
       next: (res) => {
+        this.spinner.hide();
         // console.log('res :>> ', res);
         if (res.statusCode == 200) {
           this.toaster.success(res.message);

@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { SignupData, SignupDataResponse } from 'src/app/interface/common';
 import { ApiService } from 'src/app/services/api.service';
@@ -25,7 +26,8 @@ export class SignupComponent implements OnInit {
     private fb: FormBuilder,
     private apiService: ApiService,
     private router: Router,
-    private toaster:ToastrService
+    private toaster:ToastrService,
+    private spinner:NgxSpinnerService
   ) {
     this.myForm = this.fb.group({
       name: ['',Validators.required],
@@ -52,6 +54,7 @@ export class SignupComponent implements OnInit {
     return this.myForm.controls;
   }
   public onSubmit(): void {
+    this.spinner.show();
     // console.log('this.myForm :>> ', this.myForm.value);
     // console.log('this.myForm.value.name :>> ', this.myForm.value.name);
     // const data = {
@@ -63,6 +66,7 @@ export class SignupComponent implements OnInit {
     // console.log('this.myForm.value :>> ', this.myForm.value);
     this.apiService.setUsername(this.myForm.value).subscribe({
       next: (res:SignupDataResponse) => {
+        this.spinner.hide();
         if(res.statusCode==200){
         // console.log('post res :>> ', res);
         this.toaster.success(res.message)

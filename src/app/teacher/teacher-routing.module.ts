@@ -10,6 +10,7 @@ import { ViewSingleExamResolver } from './Resolver/view-single-exam.resolver';
 import { ViewSingleStudentResolver } from './Resolver/view-single-student.resolver';
 import { StudentDataListComponent } from './student-data-list/student-data-list.component';
 import { TeacherHomeComponent } from './teacher-home/teacher-home.component';
+import { TestingTeacherComponent } from './testing-teacher/testing-teacher.component';
 import { VerifyStudentDataComponent } from './verify-student-data/verify-student-data.component';
 import { ViewExamComponent } from './view-exam/view-exam.component';
 import { ViewSingleExamDetailComponent } from './view-single-exam-detail/view-single-exam-detail.component';
@@ -22,15 +23,17 @@ const routes: Routes = [
   },
   {
     path: 'studentDataList',
-    canDeactivate:[AuthGuard],
+    canDeactivate: [AuthGuard],
     component: StudentDataListComponent,
     resolve: { studentList: StudentListResolver },
   },
   {
     path: 'viewDetails/:_id',
     component: ViewStudentDetailsComponent,
-    resolve: { viewSingleExamResolver: ViewSingleExamResolver,viewSingleStudentResolver: ViewSingleStudentResolver},
-
+    resolve: {
+      viewSingleExamResolver: ViewSingleExamResolver,
+      viewSingleStudentResolver: ViewSingleStudentResolver,
+    },
   },
   {
     path: 'createExam',
@@ -56,13 +59,19 @@ const routes: Routes = [
     resolve: { verifiedStudentsResolver: VerifiedStudentsResolver },
   },
   {
-    path: 'editExam',
-    component: EditExamComponent,
-  },
-  {
     path: 'editExam/:_id',
     component: EditExamComponent,
     resolve: { viewSingleExamResolver: ViewSingleExamResolver },
+  },
+  {
+    path: 'testing',
+    // resolve:{viewSingleExamResolver:ViewSingleExamResolver},
+    component: TestingTeacherComponent,
+  },
+  {
+    path: 'testing/:_id',
+    resolve:{viewSingleExamResolver:ViewSingleExamResolver},
+    component: TestingTeacherComponent,
   },
   // {
   //   path:'changePassword',
