@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
   public teacherEmail!: void;
   public studentName!: void;
   public studentEmail!: void;
+
+  // @Output() name = new EventEmitter();
 
   constructor(
     private fb: FormBuilder,
@@ -53,30 +55,17 @@ export class LoginComponent implements OnInit {
       next: (res: LoginDataResponse) => {
         if (res.statusCode == 200) {
           this.spinner.hide();
-
           this.toaster.success(res.message);
           this.apiService.isLoggedOut = true;
           if (res?.data.role == 'student') {
             this.token = localStorage.setItem('token', res.data.token);
-            this.studentName = localStorage.setItem(
-              'studentName',
-              res.data.name
-            );
-            this.studentEmail = localStorage.setItem(
-              'studentEmail',
-              res.data.email
-            );
+            this.studentName = localStorage.setItem('studentName',res.data.name);
+            this.studentEmail = localStorage.setItem('studentEmail',res.data.email);
             this.router.navigate(['student']);
           } else {
             this.token = localStorage.setItem('token', res.data.token);
-            this.teacherName = localStorage.setItem(
-              'teacherName',
-              res.data.name
-            );
-            this.teacherEmail = localStorage.setItem(
-              'teacherEmail',
-              res.data.email
-            );
+            this.teacherName = localStorage.setItem('teacherName',res.data.name);
+            this.teacherEmail = localStorage.setItem('teacherEmail',res.data.email);
             this.router.navigate(['teacher']);
           }
         } else {
@@ -85,6 +74,7 @@ export class LoginComponent implements OnInit {
       },
       error: (err) => {
         this.toaster.error(err.error.message);
+        this.spinner.hide();
       },
     });
   }

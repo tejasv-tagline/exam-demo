@@ -29,6 +29,7 @@ export class ExamPaperComponent implements OnInit {
     this.response = this.activatedRoute.snapshot.data['examPaperResolver'];
     // console.log('this.response :>> ', this.response);
     this.capturedId = this.activatedRoute.snapshot.params['_id'];
+
     //  console.log('this.capturedId :>> ', this.capturedId);
 
     this.examForm = this.fb.group({

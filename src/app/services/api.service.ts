@@ -2,15 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { loginForm, MyExamForm, SignupData } from '../interface/common';
+import { PreloadingStrategy, Route } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
-export class ApiService {
+export class ApiService{
   public token = localStorage.getItem('token') || '';
   private headers: any;
   public isLoggedOut: boolean = false;
 
   constructor(private http: HttpClient) {}
+ 
 
   // Signup Api starts
   public setUsername(myForm: SignupData): Observable<any> {

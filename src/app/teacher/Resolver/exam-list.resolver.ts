@@ -12,7 +12,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class ExamListResolver implements Resolve<boolean> {
   constructor(private apiService:ApiService){}
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
     return this.apiService.viewExam();
   }
 }

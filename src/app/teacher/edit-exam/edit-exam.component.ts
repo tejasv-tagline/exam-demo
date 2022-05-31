@@ -41,9 +41,9 @@ export class EditExamComponent implements OnInit {
   ngOnInit(): void {
     this.passId = this.activatedRoute.snapshot.params['_id'];
     this.myForm = this.fb.group({
-      subjectName: [''],
+      // subjectName: [''],
       questions: this.fb.array([]),
-      notes: this.fb.array([new FormControl('null', Validators.required)]),
+      // notes: this.fb.array([new FormControl('null', Validators.required)]),
     });
 
     // this.viewDetails();
@@ -52,6 +52,7 @@ export class EditExamComponent implements OnInit {
         'this.response.data.questions :>> ',
         this.response.data.questions
       );
+      this.myForm.patchValue(this.response.data.questions)
       // console.log('this.response :>> ', this.response);
       // console.log('this.response.data :>> ', this.response.data);
       this.isPageLoaded = true;
